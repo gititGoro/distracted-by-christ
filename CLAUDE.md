@@ -14,6 +14,9 @@ Static devotional page. No dependencies, no framework. See README.md for the fil
    - Front matter: `date` (YYYY-MM-DD, the South African date from step 0), `day`, `memorial` (blank if none), `season`,
      `colour` (green | violet | white | red | rose | black), `psalter`.
    - `# Aspirations`: 2 to 4 that suit the day or feast. Generic ones live in `library.md`.
+     A line of Scripture is quoted word for word, with its reference: never change the speaker's
+     person ("my words" stays "my words"). To pray a verse back to God, say so plainly
+     ("Lord, your words will not pass away") or choose another aspiration.
    - `# Homilies`: 5 or 6. The day's Gospel first, then the coming Sunday's, then passages that
      fit the season. Each: `## Reference | label`, the passage as `> ` lines, then
      `### Father | Work, section` and two short paragraphs. Prefer the Office of Readings.
