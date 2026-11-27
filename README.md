@@ -30,3 +30,9 @@ and `library.md` live and uses them instead of its inlined copies, so a host can
 
 Ask Claude to "update it for the day" in this repo; `CLAUDE.md` holds the procedure.
 The same instructions are on the page itself under *Prompt for the daily refresh*.
+
+## Hosting
+
+Served by GitHub Pages from `main` (repo root): https://gititgoro.github.io/distracted-by-christ/
+Every push redeploys. `.nojekyll` stops Pages turning the markdown files into HTML, so the page
+can fetch them as-is.

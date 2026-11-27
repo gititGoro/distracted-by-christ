@@ -4,11 +4,14 @@ Static devotional page. No dependencies, no framework. See README.md for the fil
 
 ## "Update it for the day"
 
-1. Work out today's liturgical day for the Roman Rite (General Roman Calendar): weekday name,
+0. **"Today" is the date in South Africa (Africa/Johannesburg, UTC+2)**, not the machine's clock.
+   Get it with `TZ=Africa/Johannesburg date +%F`. The scheduled run fires at 00:10 there, which is
+   still the previous day in UTC, so `date` alone gives the wrong day.
+1. Work out that day's liturgical day for the Roman Rite (General Roman Calendar): weekday name,
    feast or memorial, season, liturgical colour, psalter week (week of Ordinary Time mod 4;
    Advent/Lent/Easter weeks start at week I), and the Mass readings.
 2. Rewrite `day.md` in the exact format of the current file:
-   - Front matter: `date` (YYYY-MM-DD, today), `day`, `memorial` (blank if none), `season`,
+   - Front matter: `date` (YYYY-MM-DD, the South African date from step 0), `day`, `memorial` (blank if none), `season`,
      `colour` (green | violet | white | red | rose | black), `psalter`.
    - `# Aspirations`: 2 to 4 that suit the day or feast. Generic ones live in `library.md`.
    - `# Homilies`: 5 or 6. The day's Gospel first, then the coming Sunday's, then passages that
@@ -30,5 +33,7 @@ Static devotional page. No dependencies, no framework. See README.md for the fil
 - **Never invent a quotation.** Quote real text with an exact source. A paraphrase is marked
   `(adapted)`. If unsure of a passage, choose one you are sure of.
 - Edit `src/template.html`, never `index.html` directly; always rebuild.
+- If the layout or format has changed, follow the current `day.md` and `src/template.html`
+  rather than this file, and update this file to match.
 - `library.md` changes only when asked (new chaplet, new series, playlist URLs).
 - Stage files by name; never `git add -A`.
