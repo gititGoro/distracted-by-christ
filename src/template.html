@@ -216,7 +216,7 @@ footer pre{white-space:pre-wrap;font:15px/1.5 ui-monospace,Menlo,monospace;backg
 
 <footer class="band">
   <div class="in">
-    <p class="mute">The texts here come from <code>day.md</code>, which is rewritten each day, and <code>library.md</code>, which holds the fixed prayers. Commentaries marked “adapted” are paraphrases; check them against a breviary.</p>
+    <p class="mute">The texts here come from three day files, <code>yesterday.md</code>, <code>today.md</code> and <code>tomorrow.md</code>, which roll forward each day at 00:10 UTC (the page shows the one dated for your own local date), and <code>library.md</code>, which holds the fixed prayers. Commentaries marked “adapted” are paraphrases; check them against a breviary.</p>
     <details>
       <summary>Prompt for the daily refresh</summary>
       <div class="row" style="margin:12px 0"><button id="copyp">Copy prompt</button><span class="mute" id="copied" aria-live="polite"></span></div>
@@ -301,7 +301,7 @@ function boot(L,D){
   $('#colour').textContent=colour;
   $('#day').textContent=(fresh&&m.day)||today.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
   $('#memo').textContent=fresh?(m.memorial||''):'';
-  if(!fresh){$('#stale').hidden=false;$('#stale').textContent=`The texts below are for ${m.date}. The season and colour above are worked out for today. Refresh day.md with the prompt at the bottom of the page.`}
+  if(!fresh){$('#stale').hidden=false;$('#stale').textContent=`The texts below are for ${m.date}. The season and colour above are worked out for today. None of yesterday.md, today.md or tomorrow.md is dated ${iso}, so the daily rotation may have missed a run. Refresh them with the prompt at the bottom of the page.`}
   if(m.psalter)$('#psalter').textContent='Psalter '+m.psalter;
   const dkey=m.date||iso;
 
@@ -320,7 +320,7 @@ function boot(L,D){
 
   /* homilies */
   const hs=D.secs.homilies?.items||[],track=$('#track');
-  track.innerHTML=hs.map((h,i)=>`<article class="slide" aria-label="${i+1} of ${hs.length}"><p class="ref">${inl(h.name)}<span>${inl(h.title)}</span></p>${md(h.body)}${h.subs.map(s=>`<h3>${inl(s.name)}</h3><p class="src">${inl(s.title)}</p>${md(s.body)}`).join('')}</article>`).join('')||'<article class="slide"><p>No homilies in day.md yet.</p></article>';
+  track.innerHTML=hs.map((h,i)=>`<article class="slide" aria-label="${i+1} of ${hs.length}"><p class="ref">${inl(h.name)}<span>${inl(h.title)}</span></p>${md(h.body)}${h.subs.map(s=>`<h3>${inl(s.name)}</h3><p class="src">${inl(s.title)}</p>${md(s.body)}`).join('')}</article>`).join('')||'<article class="slide"><p>No homilies in this day\'s file yet.</p></article>';
   let hi=S.h?.d===dkey?S.h.i:0,ht;
   const showH=()=>{$('#hn').textContent=hs.length?`${hi+1} of ${hs.length}`:'';$('#hdots').innerHTML=hs.map((_,i)=>`<i class="${i===hi?'on':''}"></i>`).join('')};
   const goH=(i,smooth=true)=>{hi=Math.max(0,Math.min(hs.length-1,i));track.scrollTo({left:hi*track.clientWidth,behavior:smooth?'smooth':'instant'});S.h={d:dkey,i:hi};save();showH()};
@@ -389,7 +389,7 @@ function boot(L,D){
   const renderH=()=>{
     $('#hchips').innerHTML=HRS.map(h=>`<button data-h="${h}" aria-pressed="${h===cur}" class="${hmap[h.toLowerCase()]?'':'none'}">${h}</button>`).join('');
     const H=hmap[cur.toLowerCase()],k=dkey+cur,steps=H?.subs||[];
-    if(!steps.length){$('#hout').innerHTML='';$('#hstep').textContent=cur;$('#hname').textContent='Not in today\'s file';$('#htext').innerHTML=`<p>day.md has no ${esc(cur)} today. Ask for it in the daily refresh, or choose another hour.</p>`;$('#htap').hidden=true;return}
+    if(!steps.length){$('#hout').innerHTML='';$('#hstep').textContent=cur;$('#hname').textContent='Not in today\'s file';$('#htext').innerHTML=`<p>This day's file has no ${esc(cur)}. Ask for it in the daily refresh, or choose another hour.</p>`;$('#htap').hidden=true;return}
     const i=Math.min(S.hst[k]||0,steps.length),done=i>=steps.length,s=steps[i];
     $('#htap').hidden=done;
     $('#hout').innerHTML=steps.map((x,j)=>`<button data-j="${j}" class="${j===i?'on':''}">${esc(x.name)}</button>`).join('');
@@ -452,7 +452,7 @@ function boot(L,D){
   });
 }
 
-const PROMPT=`Rewrite day.md for "Distracted by Christ" for {DATE}. Keep the exact format of the current file.
+const PROMPT=`Write the day file for "Distracted by Christ" for {DATE}. The site keeps three of them, yesterday.md, today.md and tomorrow.md, one per UTC date; put this one in whichever slot is dated {DATE} (or follow the rotation in the repo's CLAUDE.md). Keep the exact format of the current files.
 
 - Front matter: date (YYYY-MM-DD), day (the liturgical day's name), memorial (or blank), season, colour (green | violet | white | red | rose | black), psalter week.
 - # Aspirations: 2 to 4 short aspirations that suit the day or feast.
@@ -464,14 +464,34 @@ Return only the file.`;
 $('#prompt').textContent=PROMPT.replace('{DATE}',iso);
 $('#copyp').onclick=()=>{const t=$('#prompt').textContent;(navigator.clipboard?.writeText(t)||Promise.reject()).then(()=>{$('#copied').textContent='Copied'},()=>{const r=document.createRange();r.selectNodeContents($('#prompt'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copied').textContent='Selected; press Ctrl+C'})};
 
-/* Served over http(s): the live day.md / library.md win, so a host can update them alone.
+/* Pick the day file for the reader's own local date (iso). days: parsed files, in slot order
+   yesterday, today, tomorrow (null for a missing or unreadable one). An exact date match wins;
+   otherwise the nearest date, ties to the earlier, marked stale; with no dated file, today's slot. */
+function pickDay(days,iso){
+  const ok=days.filter(d=>d&&d.meta);
+  const exact=ok.find(d=>d.meta.date===iso);
+  if(exact)return{day:exact,stale:false};
+  const at=s=>/^\d{4}-\d\d-\d\d$/.test(s||'')?Date.parse(s+'T00:00:00Z'):NaN,t=at(iso);
+  const dated=ok.filter(d=>!isNaN(at(d.meta.date)));
+  if(dated.length&&!isNaN(t)){
+    const best=dated.reduce((a,b)=>{const da=Math.abs(at(a.meta.date)-t),db=Math.abs(at(b.meta.date)-t);return db<da||(db===da&&at(b.meta.date)<at(a.meta.date))?b:a});
+    return{day:best,stale:true};
+  }
+  return{day:days[1]||ok[0]||null,stale:true};
+}
+
+/* Served over http(s): the live day files and library.md win, so a host can update them alone.
    Opened from disk (file://): use the copies build.py inlined below. */
 const inlined=id=>document.getElementById(id)?.value||'';
 const load=f=>/^https?:$/.test(location.protocol)?fetchText(f):Promise.resolve('');
-Promise.all([load('library.md'),load('day.md')]).then(([l,d])=>{
-  l=l||inlined('md-library');d=d||inlined('md-day');
-  if(!l&&!d){$('#day').textContent='No texts found. Run python3 build.py to inline day.md and library.md.';return}
-  try{boot(parse(l),parse(d))}catch(err){$('#day').textContent='Something in day.md could not be read: '+err.message}
+const SLOTS=['yesterday','today','tomorrow'];
+Promise.all([load('library.md'),...SLOTS.map(n=>load(n+'.md'))]).then(([l,...ds])=>{
+  l=l||inlined('md-library');ds=ds.map((d,i)=>d||inlined('md-'+SLOTS[i]));
+  if(!l&&!ds.some(Boolean)){$('#day').textContent='No texts found. Run python3 build.py to inline the day files and library.md.';return}
+  const days=ds.map(d=>{if(!d)return null;try{return parse(d)}catch(e){return null}});
+  const pick=pickDay(days,iso);
+  if(!pick.day&&ds.some(Boolean)){$('#day').textContent='None of yesterday.md, today.md or tomorrow.md could be read.';return}
+  try{boot(parse(l),pick.day||parse(''))}catch(err){$('#day').textContent='Something in the day files could not be read: '+err.message}
 });
 }
 </script>

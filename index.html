@@ -216,7 +216,7 @@ footer pre{white-space:pre-wrap;font:15px/1.5 ui-monospace,Menlo,monospace;backg
 
 <footer class="band">
   <div class="in">
-    <p class="mute">The texts here come from <code>day.md</code>, which is rewritten each day, and <code>library.md</code>, which holds the fixed prayers. Commentaries marked “adapted” are paraphrases; check them against a breviary.</p>
+    <p class="mute">The texts here come from three day files, <code>yesterday.md</code>, <code>today.md</code> and <code>tomorrow.md</code>, which roll forward each day at 00:10 UTC (the page shows the one dated for your own local date), and <code>library.md</code>, which holds the fixed prayers. Commentaries marked “adapted” are paraphrases; check them against a breviary.</p>
     <details>
       <summary>Prompt for the daily refresh</summary>
       <div class="row" style="margin:12px 0"><button id="copyp">Copy prompt</button><span class="mute" id="copied" aria-live="polite"></span></div>
@@ -418,7 +418,331 @@ start: 01-01
 days: 365
 url: https://www.youtube.com/results?search_query=Diary+of+St+Faustina+in+a+Year+Day+{day}
 </textarea>
-<textarea hidden id="md-day">---
+<textarea hidden id="md-yesterday">---
+date: 2026-11-26
+day: Thursday of the 34th Week in Ordinary Time
+memorial:
+season: Ordinary Time
+colour: green
+psalter: Week II
+---
+&lt;!--
+One of three day files (yesterday.md, today.md, tomorrow.md), each for one UTC date.
+The 00:10 UTC run rotates them; see CLAUDE.md. Same syntax as library.md.
+colour: green | violet | white | red | rose | black
+Homilies: &quot;## Reference | label&quot;, gospel as &quot;&gt; &quot; lines, then &quot;### Father | Work&quot; and the commentary.
+Hours: &quot;## Lauds&quot; (Terce, Sext, None, Vespers, Compline); each &quot;### Step | note&quot; is one click.
+Mark paraphrase as (adapted). Never invent a quotation.
+--&gt;
+
+# Aspirations
+- Look up and raise your heads, because your redemption is drawing near. (Luke 21:28)
+- O Sacrament most holy, O Sacrament divine, all praise and all thanksgiving be every moment thine.
+- Thanks be to God for his inexpressible gift! (2 Corinthians 9:15)
+
+# Homilies
+## Luke 21:20-28 | Gospel of the day
+&gt; &quot;But when you see Jerusalem surrounded by armies, then know that its desolation has come near. Then let those who are in Judea flee to the mountains, and let those who are inside the city depart, and let not those who are out in the country enter it; for these are days of vengeance, to fulfil all that is written. Alas for those who are with child and for those who give suck in those days! For great distress shall be upon the earth and wrath upon this people; they will fall by the edge of the sword, and be led captive among all nations; and Jerusalem will be trodden down by the Gentiles, until the times of the Gentiles are fulfilled. And there will be signs in sun and moon and stars, and upon the earth distress of nations in perplexity at the roaring of the sea and the waves, men fainting with fear and with foreboding of what is coming on the world; for the powers of the heavens will be shaken. And then they will see the Son of man coming in a cloud with power and great glory. Now when these things begin to take place, look up and raise your heads, because your redemption is drawing near.&quot;
+### St Augustine | Letter 199, to Hesychius, On the End of the World (adapted)
+In this passage the Lord speaks of two things at once: the fall of Jerusalem, which came in its own generation, and his coming at the end, which no one can date. Luke keeps them apart more clearly than the others. The armies around the city belong to the first; the Son of Man on the clouds belongs to the second.
+So we should not reckon the years and fix a day. The Lord comes daily to his Church, and he will come at the last. Whether the end is near or far, the end of each one&#x27;s life is near, and as each is found on his last day, so he will be found on the last day of the world.
+
+## Psalm 96:11-13 | He comes to judge the earth
+&gt; Let the heavens be glad, and let the earth rejoice; let the sea roar, and all that fills it; let the field exult, and everything in it! Then shall all the trees of the wood sing for joy before the Lord, for he comes, for he comes to judge the earth. He will judge the world with righteousness, and the peoples with his truth.
+### St Augustine | Exposition of Psalm 95(96), 14-15 (adapted)
+He came the first time, and he will come again. He came quietly, to be judged; he will come openly, to judge. Why should the trees of the wood rejoice? Because he comes. Let us not be afraid of his coming; let us love it, and amend our lives while there is time.
+If you love him now, you will not fear him then. He who is to be our judge is now our advocate. Do not wait to be afraid; begin to love.
+
+## Mark 13:33-37 | Sunday, First Sunday of Advent
+&gt; &quot;Take heed, watch; for you do not know when the time will come. It is like a man going on a journey, when he leaves home and puts his servants in charge, each with his work, and commands the doorkeeper to be on the watch. Watch therefore, for you do not know when the master of the house will come, in the evening, or at midnight, or at cockcrow, or in the morning, lest he come suddenly and find you asleep. And what I say to you I say to all: Watch.&quot;
+### St Ephrem the Syrian | Commentary on the Diatessaron, 18 (adapted)
+Christ kept the hour of his coming hidden so that we would keep watch, each of us thinking he might come in our own day. Had he told us the hour, his coming would mean little; we would wait idly until the date drew near.
+He said he would come, but not when, and so every generation and every age longs for him. Watch, then: not only with open eyes, but with a heart that does not sleep.
+
+## Luke 10:38-42 | Martha and Mary
+&gt; Now as they went on their way, he entered a village; and a woman named Martha received him into her house. And she had a sister called Mary, who sat at the Lord&#x27;s feet and listened to his teaching. But Martha was distracted with much serving; and she went to him and said, &quot;Lord, do you not care that my sister has left me to serve alone? Tell her then to help me.&quot; But the Lord answered her, &quot;Martha, Martha, you are anxious and troubled about many things; one thing is needful. Mary has chosen the good portion, which shall not be taken away from her.&quot;
+### St Augustine | Sermon 103 (adapted)
+Martha&#x27;s work was good: she served the Lord in his body. But Mary had chosen the better part. Martha was busy with many things; Mary was intent on one. The many will pass; the one remains.
+What Mary chose grows greater, and what Martha did will one day cease, for in heaven no one will be hungry to be fed. So the Lord does not blame Martha&#x27;s work. He tells her where her work is going.
+
+## John 15:4-5 | The vine and the branches
+&gt; &quot;Abide in me, and I in you. As the branch cannot bear fruit by itself, unless it abides in the vine, neither can you, unless you abide in me. I am the vine, you are the branches. He who abides in me, and I in him, he it is that bears much fruit, for apart from me you can do nothing.&quot;
+### St Cyril of Alexandria | Commentary on John, 10 (adapted)
+The Lord calls himself the vine, and us the branches, to show how much we gain by being joined to him and how important it is to remain in his love. As branches draw their life from the vine, we draw ours from him.
+Those joined to him by faith share his nature through the Spirit. Cut off, a branch withers, whatever it was doing before.
+
+## Luke 18:13 | The tax collector&#x27;s prayer
+&gt; But the tax collector, standing far off, would not even lift up his eyes to heaven, but beat his breast, saying, &quot;God, be merciful to me a sinner!&quot;
+### St Augustine | Sermon 115 (adapted)
+He stood far off, yet he drew near to God. The Lord is high, yet he looks on the lowly. The Pharisee raised himself up and God stayed far from him; the tax collector stood far away and God came close.
+He did not dare lift his eyes. He looked at himself so that God would look at him with mercy, and he went home justified.
+
+# Litany | Litany of the Most Blessed Sacrament
+! Thursday, the day of the Last Supper, takes the Blessed Sacrament. No memorial today.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, have mercy. | Christ, have mercy.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, hear us. | Christ, graciously hear us.
+- God the Father of heaven, | have mercy on us.
+- God the Son, Redeemer of the world,
+- God the Holy Spirit,
+- Holy Trinity, one God,
+- Living Bread, that came down from heaven,
+- Hidden God and Saviour,
+- Corn of the elect,
+- Vine bringing forth virgins,
+- Bread of fatness and royal dainties,
+- Perpetual Sacrifice,
+- Clean Oblation,
+- Lamb without spot,
+- Most pure Feast,
+- Food of Angels,
+- Hidden Manna,
+- Memorial of the wonders of God,
+- Supersubstantial Bread,
+- Word made Flesh, dwelling in us,
+- Sacred Host,
+- Chalice of benediction,
+- Mystery of faith,
+- Most high and adorable Sacrament,
+- Most holy of all sacrifices,
+- True Propitiation for the living and the dead,
+- Heavenly Antidote against the poison of sin,
+- Most wonderful of all miracles,
+- Most holy Commemoration of the Passion of Christ,
+- Gift transcending all fullness,
+- Special Memorial of divine love,
+- Affluence of divine bounty,
+- Most august and holy Mystery,
+- Medicine of immortality,
+- Tremendous and life-giving Sacrament,
+- Bread made Flesh by the omnipotence of the Word,
+- Unbloody Sacrifice,
+- At once our Feast and our Guest,
+- Sweetest Banquet, at which Angels minister,
+- Sacrament of piety,
+- Bond of charity,
+- Priest and Victim,
+- Spiritual Sweetness tasted in its proper source,
+- Refreshment of holy souls,
+- Viaticum of such as die in the Lord,
+- Pledge of future glory,
+- Be merciful, | spare us, O Lord.
+- Be merciful, | graciously hear us, O Lord.
+- From an unworthy reception of thy Body and Blood, | O Lord, deliver us.
+- From the lust of the flesh,
+- From the lust of the eyes,
+- From the pride of life,
+- From every occasion of sin,
+- Through the desire wherewith thou didst desire to eat this Passover with thy disciples,
+- Through that profound humility wherewith thou didst wash their feet,
+- Through that ardent charity whereby thou didst institute this divine Sacrament,
+- Through thy Precious Blood which thou hast left us on our altars,
+- Through the five wounds of this thy most holy Body which thou didst receive for us,
+- We sinners, | we beseech thee, hear us.
+- That thou wouldst vouchsafe to preserve and increase our faith, reverence and devotion towards this admirable Sacrament,
+- That thou wouldst vouchsafe to conduct us, through a true confession of our sins, to a frequent reception of the Holy Eucharist,
+- That thou wouldst vouchsafe to deliver us from every heresy, perfidy and blindness of heart,
+- That thou wouldst vouchsafe to impart to us the precious and heavenly fruits of this most holy Sacrament,
+- That at the hour of death thou wouldst strengthen and defend us by this heavenly Viaticum,
+- Son of God,
+- Lamb of God, who takest away the sins of the world, | spare us, O Lord.
+- Lamb of God, who takest away the sins of the world, | graciously hear us, O Lord.
+- Lamb of God, who takest away the sins of the world, | have mercy on us.
+- Christ, hear us. | Christ, graciously hear us.
+- Thou didst give them Bread from heaven, | containing in itself all sweetness.
+
+Let us pray. O God, who under a wonderful Sacrament hast left us a memorial of thy Passion: grant us, we beseech thee, so to venerate the sacred mysteries of thy Body and Blood, that we may ever feel within us the fruit of thy Redemption. Who livest and reignest for ever and ever. Amen.
+
+# Saints
+## St Thomas Aquinas | O Sacrum Convivium, antiphon for Corpus Christi
+O sacred banquet, in which Christ is received, the memory of his Passion is renewed, the mind is filled with grace, and a pledge of future glory is given to us.
+
+## St Ignatius of Antioch | Letter to the Ephesians, 20
+Breaking one bread, which is the medicine of immortality, the antidote that we should not die, but live for ever in Jesus Christ.
+
+## St Augustine | Sermon 272 (adapted)
+If you are the body of Christ and his members, it is your own mystery that is placed on the Lord&#x27;s table. Be what you see, and receive what you are.
+
+## St Francis of Assisi | Letter to the Entire Order (adapted)
+Let the whole of mankind tremble, the whole world shake and the heavens exult, when Christ, the Son of the living God, is present on the altar in the hands of a priest.
+
+## St Teresa of Avila | Bookmark (Nada te turbe)
+Let nothing disturb you, let nothing frighten you. All things are passing; God never changes. Patience obtains all things. Whoever has God lacks nothing. God alone suffices.
+
+## St Augustine | Confessions, I.1
+You have made us for yourself, O Lord, and our heart is restless until it rests in you.
+
+## St John Vianney | Catechism on Prayer
+My little children, your hearts are small, but prayer stretches them and makes them capable of loving God.
+
+# Hours
+## Lauds
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Hymn | Iam lucis orto sidere
+Now that the daylight fills the sky,
+We lift our hearts to God on high,
+That he, in all we do or say,
+Would keep us free from harm today.
+All praise to God the Father be,
+All praise, eternal Son, to thee,
+Whom with the Spirit we adore
+For ever and for evermore. Amen.
+### Psalm 80 | vv. 1-3, 14-15, 17-19
+! Antiphon: Restore us, O God; let your face shine, that we may be saved.
+Give ear, O Shepherd of Israel,
+thou who leadest Joseph like a flock!
+Thou who art enthroned upon the cherubim, shine forth
+before Ephraim and Benjamin and Manasseh!
+Stir up thy might,
+and come to save us!
+Restore us, O God;
+let thy face shine, that we may be saved!
+Turn again, O God of hosts!
+Look down from heaven, and see;
+have regard for this vine,
+the stock which thy right hand planted.
+But let thy hand be upon the man of thy right hand,
+the son of man whom thou hast made strong for thyself!
+Then we will never turn back from thee;
+give us life, and we will call on thy name!
+Restore us, O Lord God of hosts!
+let thy face shine, that we may be saved!
+! Glory be. Repeat the antiphon.
+### Canticle | Isaiah 12:1-3
+! Antiphon: With joy you will draw water from the wells of salvation.
+I will give thanks to thee, O Lord,
+for though thou wast angry with me,
+thy anger turned away,
+and thou didst comfort me.
+Behold, God is my salvation;
+I will trust, and will not be afraid;
+for the Lord God is my strength and my song,
+and he has become my salvation.
+With joy you will draw water
+from the wells of salvation.
+! Glory be. Repeat the antiphon.
+### Reading | Romans 8:18-21
+I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us. For the creation waits with eager longing for the revealing of the sons of God; for the creation was subjected to futility, not of its own will but by the will of him who subjected it in hope; because the creation itself will be set free from its bondage to decay and obtain the glorious liberty of the children of God.
+### Benedictus | Luke 1:68-79
+! Antiphon: Look up and raise your heads, because your redemption is drawing near.
+Blessed be the Lord God of Israel, for he has visited and redeemed his people,
+and has raised up a horn of salvation for us in the house of his servant David,
+as he spoke by the mouth of his holy prophets from of old,
+that we should be saved from our enemies, and from the hand of all who hate us;
+to perform the mercy promised to our fathers, and to remember his holy covenant,
+the oath which he swore to our father Abraham, to grant us
+that we, being delivered from the hand of our enemies,
+might serve him without fear, in holiness and righteousness before him all the days of our life.
+And you, child, will be called the prophet of the Most High;
+for you will go before the Lord to prepare his ways,
+to give knowledge of salvation to his people in the forgiveness of their sins,
+through the tender mercy of our God,
+when the day shall dawn upon us from on high
+to give light to those who sit in darkness and in the shadow of death,
+to guide our feet into the way of peace.
+! Glory be. Repeat the antiphon.
+### Intercessions
+! Response: Lord, you are our redemption.
+- You give us this day; let us spend it thankfully. | Lord, you are our redemption.
+- When the news of the world frightens us, lift up our heads.
+- Feed us with the Bread of life, and make us one body in you.
+- Bring all who have died in your friendship to see you coming in glory.
+### Our Father
+Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil.
+### Concluding prayer | Collect, 34th week
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through our Lord Jesus Christ, your Son, who lives and reigns with you in the unity of the Holy Spirit, God, for ever and ever. Amen.
+### Dismissal
+- May the Lord bless us, protect us from all evil and bring us to everlasting life. | Amen.
+
+## Sext
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Psalm 123 | complementary psalmody
+! The complementary psalmody may be prayed on any day.
+To thee I lift up my eyes,
+O thou who art enthroned in the heavens!
+Behold, as the eyes of servants
+look to the hand of their master,
+as the eyes of a maid
+to the hand of her mistress,
+so our eyes look to the Lord our God,
+till he have mercy upon us.
+Have mercy upon us, O Lord, have mercy upon us,
+for we have had more than enough of contempt.
+Too long our soul has been sated
+with the scorn of those who are at ease,
+the contempt of the proud.
+! Glory be.
+### Reading | Romans 13:8
+Owe no one anything, except to love one another; for he who loves his neighbor has fulfilled the law.
+### Prayer
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through Christ our Lord. Amen.
+### Conclusion
+- Let us praise the Lord. | And give him thanks.
+
+## Compline
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Examination of conscience
+! Pause and look back over the day.
+I confess to almighty God and to you, my brothers and sisters, that I have greatly sinned, in my thoughts and in my words, in what I have done and in what I have failed to do, through my fault, through my fault, through my most grievous fault; therefore I ask blessed Mary ever-Virgin, all the Angels and Saints, and you, my brothers and sisters, to pray for me to the Lord our God.
+- May almighty God have mercy on us, forgive us our sins, and bring us to everlasting life. | Amen.
+### Hymn | Te lucis ante terminum
+Before the ending of the day,
+Creator of the world, we pray
+That with thy wonted favour thou
+Wouldst be our guard and keeper now.
+All praise, eternal Son, to thee
+Whose advent sets thy people free,
+Whom with the Father we adore
+And Holy Spirit evermore. Amen.
+### Psalm 16 | vv. 1-2, 5-11
+! Antiphon: In the night also my heart instructs me; I keep the Lord always before me.
+Preserve me, O God, for in thee I take refuge.
+I say to the Lord, &quot;Thou art my Lord;
+I have no good apart from thee.&quot;
+The Lord is my chosen portion and my cup;
+thou holdest my lot.
+The lines have fallen for me in pleasant places;
+yea, I have a goodly heritage.
+I bless the Lord who gives me counsel;
+in the night also my heart instructs me.
+I keep the Lord always before me;
+because he is at my right hand, I shall not be moved.
+Therefore my heart is glad, and my soul rejoices;
+my body also dwells secure.
+For thou dost not give me up to Sheol,
+or let thy godly one see the Pit.
+Thou dost show me the path of life;
+in thy presence there is fulness of joy,
+in thy right hand are pleasures for evermore.
+! Glory be. Repeat the antiphon.
+### Reading | 1 Thessalonians 5:23
+May the God of peace himself sanctify you wholly; and may your spirit and soul and body be kept sound and blameless at the coming of our Lord Jesus Christ.
+### Responsory
+- Into your hands, Lord, I commend my spirit. | Into your hands, Lord, I commend my spirit.
+- You have redeemed us, Lord God of truth. | I commend my spirit.
+### Nunc Dimittis | Luke 2:29-32
+! Antiphon: Protect us, Lord, as we stay awake; watch over us as we sleep, that awake, we may keep watch with Christ, and asleep, rest in his peace.
+Lord, now lettest thou thy servant depart in peace, according to thy word;
+for mine eyes have seen thy salvation
+which thou hast prepared before the face of all people,
+to be a light to lighten the Gentiles,
+and to be the glory of thy people Israel.
+! Glory be. Repeat the antiphon.
+### Concluding prayer
+Lord God, send peaceful sleep to refresh our tired bodies. May your help always renew us and keep us strong in your service. We ask this through Christ our Lord. Amen.
+### Blessing
+- May the all-powerful Lord grant us a restful night and a peaceful death. | Amen.
+### Salve Regina
+Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us; and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.
+</textarea>
+<textarea hidden id="md-today">---
 date: 2026-11-27
 day: Friday of the 34th Week in Ordinary Time
 memorial: Our Lady of the Miraculous Medal, where kept
@@ -427,7 +751,8 @@ colour: green
 psalter: Week II
 ---
 &lt;!--
-day.md: rewritten each day. Same syntax as library.md.
+One of three day files (yesterday.md, today.md, tomorrow.md), each for one UTC date.
+The 00:10 UTC run rotates them; see CLAUDE.md. Same syntax as library.md.
 colour: green | violet | white | red | rose | black
 Homilies: &quot;## Reference | label&quot;, gospel as &quot;&gt; &quot; lines, then &quot;### Father | Work&quot; and the commentary.
 Hours: &quot;## Lauds&quot; (Terce, Sext, None, Vespers, Compline); each &quot;### Step | note&quot; is one click.
@@ -739,6 +1064,328 @@ All-powerful God, keep us united with your Son in his death and burial so that w
 ### Salve Regina
 Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us; and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.
 </textarea>
+<textarea hidden id="md-tomorrow">---
+date: 2026-11-28
+day: Saturday of the 34th Week in Ordinary Time
+memorial: Saturday memorial of the Blessed Virgin Mary (optional)
+season: Ordinary Time
+colour: green
+psalter: Week II
+---
+&lt;!--
+One of three day files (yesterday.md, today.md, tomorrow.md), each for one UTC date.
+The 00:10 UTC run rotates them; see CLAUDE.md. Same syntax as library.md.
+colour: green | violet | white | red | rose | black
+Homilies: &quot;## Reference | label&quot;, gospel as &quot;&gt; &quot; lines, then &quot;### Father | Work&quot; and the commentary.
+Hours: &quot;## Lauds&quot; (Terce, Sext, None, Vespers, Compline); each &quot;### Step | note&quot; is one click.
+Mark paraphrase as (adapted). Never invent a quotation.
+--&gt;
+
+# Aspirations
+- Come, Lord Jesus! (Revelation 22:20)
+- Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death.
+- Behold, I am the handmaid of the Lord; let it be to me according to your word. (Luke 1:38)
+
+# Homilies
+## Luke 21:34-36 | Gospel of the day
+&gt; &quot;But take heed to yourselves lest your hearts be weighed down with dissipation and drunkenness and cares of this life, and that day come upon you suddenly like a snare; for it will come upon all who dwell upon the face of the whole earth. But watch at all times, praying that you may have strength to escape all these things that will take place, and to stand before the Son of man.&quot;
+### St Cyril of Jerusalem | Catechetical Lectures, 15.1-3 (adapted)
+We preach not one coming of Christ only, but a second also, far more glorious than the first. The first was a sign of his patience; the second brings the crown of the kingdom. In the first he was wrapped in swaddling clothes in a manger; in the second he will be clothed in light.
+So do not be weighed down by the cares of this life. We do not know the day, and it is not for us to know it. Keep watch, and prepare, so that the day may find us standing, not asleep.
+
+## Mark 13:33-37 | Tomorrow, First Sunday of Advent
+&gt; &quot;Take heed, watch; for you do not know when the time will come. It is like a man going on a journey, when he leaves home and puts his servants in charge, each with his work, and commands the doorkeeper to be on the watch. Watch therefore, for you do not know when the master of the house will come, in the evening, or at midnight, or at cockcrow, or in the morning, lest he come suddenly and find you asleep. And what I say to you I say to all: Watch.&quot;
+### St Charles Borromeo | Pastoral Letters (adapted)
+Beloved, this is the acceptable time that the Spirit calls the season of salvation, the time of the Lord&#x27;s coming. The Church asks us to remember how great is the love of the Lord who came to us, and to prepare our hearts each year to receive him.
+The Church does not only want us to recall that he came long ago. She wants us to be ready now: he who came once in the flesh is ready to come again, at any hour, into our hearts.
+
+## Luke 1:26-38 | The Annunciation
+&gt; In the sixth month the angel Gabriel was sent from God to a city of Galilee named Nazareth, to a virgin betrothed to a man whose name was Joseph, of the house of David; and the virgin&#x27;s name was Mary. And he came to her and said, &quot;Hail, full of grace, the Lord is with you!&quot; But she was greatly troubled at the saying, and considered in her mind what sort of greeting this might be. And the angel said to her, &quot;Do not be afraid, Mary, for you have found favor with God. And behold, you will conceive in your womb and bear a son, and you shall call his name Jesus.&quot; And Mary said, &quot;Behold, I am the handmaid of the Lord; let it be to me according to your word.&quot; And the angel departed from her.
+### St Bernard of Clairvaux | Homilies in Praise of the Virgin Mother, 4.8-9 (adapted)
+You have heard, O Virgin, that you will conceive and bear a son. The angel awaits your answer, and we too are waiting, for the word of pity. The price of our salvation is offered to you; if you consent, we shall be set free at once.
+Answer quickly, O Virgin. Speak the word the earth and heaven are waiting for. Open your heart to faith, your lips to consent, your womb to the Creator. Behold, the one desired of all nations is standing at the door and knocking.
+
+## Luke 10:38-42 | Martha and Mary
+&gt; Now as they went on their way, he entered a village; and a woman named Martha received him into her house. And she had a sister called Mary, who sat at the Lord&#x27;s feet and listened to his teaching. But Martha was distracted with much serving; and she went to him and said, &quot;Lord, do you not care that my sister has left me to serve alone? Tell her then to help me.&quot; But the Lord answered her, &quot;Martha, Martha, you are anxious and troubled about many things; one thing is needful. Mary has chosen the good portion, which shall not be taken away from her.&quot;
+### St Augustine | Sermon 103 (adapted)
+Martha&#x27;s work was good: she served the Lord in his body. But Mary had chosen the better part. Martha was busy with many things; Mary was intent on one. The many will pass; the one remains.
+What Mary chose grows greater, and what Martha did will one day cease, for in heaven no one will be hungry to be fed. So the Lord does not blame Martha&#x27;s work. He tells her where her work is going.
+
+## Matthew 6:6-8 | Praying in secret
+&gt; &quot;But when you pray, go into your room and shut the door and pray to your Father who is in secret; and your Father who sees in secret will reward you. And in praying do not heap up empty phrases as the Gentiles do; for they think that they will be heard for their many words. Do not be like them, for your Father knows what you need before you ask him.&quot;
+### St Cyprian of Carthage | On the Lord&#x27;s Prayer, 4 (adapted)
+When we pray, let our words be ordered and quiet. Think that you stand in the sight of God. God hears the heart, not the voice. He who sees our thoughts does not need to be reminded by shouting.
+Hannah, praying for a son, spoke in her heart; her lips moved but her voice was not heard, and God heard her. Pray like that: briefly, in secret, with faith.
+
+# Litany | Litany of Loreto
+! Saturday, Our Lady&#x27;s day, on the eve of Advent.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, have mercy. | Christ, have mercy.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, hear us. | Christ, graciously hear us.
+- God the Father of heaven, | have mercy on us.
+- God the Son, Redeemer of the world,
+- God the Holy Spirit,
+- Holy Trinity, one God,
+- Holy Mary, | pray for us.
+- Holy Mother of God,
+- Holy Virgin of virgins,
+- Mother of Christ,
+- Mother of the Church,
+- Mother of Mercy,
+- Mother of divine grace,
+- Mother of Hope,
+- Mother most pure,
+- Mother most chaste,
+- Mother inviolate,
+- Mother undefiled,
+- Mother most amiable,
+- Mother most admirable,
+- Mother of good counsel,
+- Mother of our Creator,
+- Mother of our Saviour,
+- Virgin most prudent,
+- Virgin most venerable,
+- Virgin most renowned,
+- Virgin most powerful,
+- Virgin most merciful,
+- Virgin most faithful,
+- Mirror of justice,
+- Seat of wisdom,
+- Cause of our joy,
+- Spiritual vessel,
+- Vessel of honour,
+- Singular vessel of devotion,
+- Mystical rose,
+- Tower of David,
+- Tower of ivory,
+- House of gold,
+- Ark of the covenant,
+- Gate of heaven,
+- Morning star,
+- Health of the sick,
+- Refuge of sinners,
+- Solace of migrants,
+- Comfort of the afflicted,
+- Help of Christians,
+- Queen of Angels,
+- Queen of Patriarchs,
+- Queen of Prophets,
+- Queen of Apostles,
+- Queen of Martyrs,
+- Queen of Confessors,
+- Queen of Virgins,
+- Queen of all Saints,
+- Queen conceived without original sin,
+- Queen assumed into heaven,
+- Queen of the most holy Rosary,
+- Queen of families,
+- Queen of peace,
+- Lamb of God, who takes away the sins of the world, | spare us, O Lord.
+- Lamb of God, who takes away the sins of the world, | graciously hear us, O Lord.
+- Lamb of God, who takes away the sins of the world, | have mercy on us.
+- Pray for us, O holy Mother of God, | that we may be made worthy of the promises of Christ.
+
+Let us pray. Grant, we beseech you, O Lord God, that we your servants may enjoy perpetual health of mind and body; and by the glorious intercession of the Blessed Mary, ever Virgin, may be delivered from present sorrow and obtain eternal joy. Through Christ our Lord. Amen.
+
+# Saints
+## St Cyril of Jerusalem | Catechetical Lectures, 15.1
+We preach not one advent only of Christ, but a second also, far more glorious than the former.
+
+## St Bernard of Clairvaux | Sermon 5 on Advent, 1 (adapted)
+We know that there are three comings of the Lord. The third lies between the other two. In the first he came in the flesh and in weakness; in the middle coming he comes in spirit and in power; in the last he will come in glory and majesty.
+
+## St Bernard of Clairvaux | Homilies on Missus est, 2.17 (adapted)
+In dangers, in doubts, in difficulties, think of Mary, call upon Mary. Let her not leave your lips, let her not leave your heart.
+
+## St Teresa of Avila | Bookmark (Nada te turbe)
+Let nothing disturb you, let nothing frighten you. All things are passing; God never changes. Patience obtains all things. Whoever has God lacks nothing. God alone suffices.
+
+## St Augustine | Confessions, X.27
+Late have I loved you, O Beauty ever ancient, ever new, late have I loved you! You were within me, but I was outside, and it was there that I searched for you. You were with me, but I was not with you. You called, you shouted, and you broke through my deafness.
+
+## St Thérèse of Lisieux | Story of a Soul, Manuscript C
+For me, prayer is a surge of the heart; it is a simple look turned toward heaven, it is a cry of recognition and of love, embracing both trial and joy.
+
+## St Francis de Sales | Introduction to the Devout Life, II.12 (adapted)
+Remember to retire at various times into the solitude of your heart, even while you are outwardly busy with work or conversation. This mental solitude cannot be disturbed by the many people around you, for they are not standing about your heart but about your body.
+
+# Hours
+## Lauds
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Hymn | Iam lucis orto sidere
+Now that the daylight fills the sky,
+We lift our hearts to God on high,
+That he, in all we do or say,
+Would keep us free from harm today.
+All praise to God the Father be,
+All praise, eternal Son, to thee,
+Whom with the Spirit we adore
+For ever and for evermore. Amen.
+### Psalm 92 | vv. 1-4
+! Antiphon: It is good to declare your steadfast love in the morning.
+It is good to give thanks to the Lord,
+to sing praises to thy name, O Most High;
+to declare thy steadfast love in the morning,
+and thy faithfulness by night,
+to the music of the lute and the harp,
+to the melody of the lyre.
+For thou, O Lord, hast made me glad by thy work;
+at the works of thy hands I sing for joy.
+! Glory be. Repeat the antiphon.
+### Psalm 8
+! Antiphon: O Lord, our Lord, how majestic is your name in all the earth!
+O Lord, our Lord,
+how majestic is thy name in all the earth!
+Thou whose glory above the heavens is chanted
+by the mouth of babes and infants,
+thou hast founded a bulwark because of thy foes,
+to still the enemy and the avenger.
+When I look at thy heavens, the work of thy fingers,
+the moon and the stars which thou hast established;
+what is man that thou art mindful of him,
+and the son of man that thou dost care for him?
+Yet thou hast made him little less than God,
+and dost crown him with glory and honor.
+Thou hast given him dominion over the works of thy hands;
+thou hast put all things under his feet,
+all sheep and oxen,
+and also the beasts of the field,
+the birds of the air, and the fish of the sea,
+whatever passes along the paths of the sea.
+O Lord, our Lord,
+how majestic is thy name in all the earth!
+! Glory be. Repeat the antiphon.
+### Reading | Romans 12:14-16
+Bless those who persecute you; bless and do not curse them. Rejoice with those who rejoice, weep with those who weep. Live in harmony with one another.
+### Benedictus | Luke 1:68-79
+! Antiphon: Watch at all times, praying that you may have strength to stand before the Son of man.
+Blessed be the Lord God of Israel, for he has visited and redeemed his people,
+and has raised up a horn of salvation for us in the house of his servant David,
+as he spoke by the mouth of his holy prophets from of old,
+that we should be saved from our enemies, and from the hand of all who hate us;
+to perform the mercy promised to our fathers, and to remember his holy covenant,
+the oath which he swore to our father Abraham, to grant us
+that we, being delivered from the hand of our enemies,
+might serve him without fear, in holiness and righteousness before him all the days of our life.
+And you, child, will be called the prophet of the Most High;
+for you will go before the Lord to prepare his ways,
+to give knowledge of salvation to his people in the forgiveness of their sins,
+through the tender mercy of our God,
+when the day shall dawn upon us from on high
+to give light to those who sit in darkness and in the shadow of death,
+to guide our feet into the way of peace.
+! Glory be. Repeat the antiphon.
+### Intercessions
+! Response: Lord, make us ready for your coming.
+- Tomorrow Advent begins; prepare a place for yourself in us. | Lord, make us ready for your coming.
+- Keep our hearts from being weighed down by the cares of this life.
+- Holy Mary waited for your word; teach us to wait as she did.
+- Bring all who have died in your friendship to stand before you with joy.
+### Our Father
+Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil.
+### Concluding prayer | Collect, 34th week
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through our Lord Jesus Christ, your Son, who lives and reigns with you in the unity of the Holy Spirit, God, for ever and ever. Amen.
+### Dismissal
+- May the Lord bless us, protect us from all evil and bring us to everlasting life. | Amen.
+
+## Sext
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Psalm 124 | complementary psalmody
+! The complementary psalmody may be prayed on any day.
+If it had not been the Lord who was on our side,
+let Israel now say,
+if it had not been the Lord who was on our side,
+when men rose up against us,
+then they would have swallowed us up alive,
+when their anger was kindled against us;
+then the flood would have swept us away,
+the torrent would have gone over us;
+then over us would have gone
+the raging waters.
+Blessed be the Lord,
+who has not given us as prey to their teeth!
+We have escaped as a bird
+from the snare of the fowlers;
+the snare is broken,
+and we have escaped!
+Our help is in the name of the Lord,
+who made heaven and earth.
+! Glory be.
+### Reading | Philippians 4:4-5
+Rejoice in the Lord always; again I will say, Rejoice. Let all men know your forbearance. The Lord is at hand.
+### Prayer
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through Christ our Lord. Amen.
+### Conclusion
+- Let us praise the Lord. | And give him thanks.
+
+## Compline
+! Tonight&#x27;s Compline follows First Vespers of the First Sunday of Advent.
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Examination of conscience
+! Pause and look back over the day.
+I confess to almighty God and to you, my brothers and sisters, that I have greatly sinned, in my thoughts and in my words, in what I have done and in what I have failed to do, through my fault, through my fault, through my most grievous fault; therefore I ask blessed Mary ever-Virgin, all the Angels and Saints, and you, my brothers and sisters, to pray for me to the Lord our God.
+- May almighty God have mercy on us, forgive us our sins, and bring us to everlasting life. | Amen.
+### Hymn | Te lucis ante terminum
+Before the ending of the day,
+Creator of the world, we pray
+That with thy wonted favour thou
+Wouldst be our guard and keeper now.
+All praise, eternal Son, to thee
+Whose advent sets thy people free,
+Whom with the Father we adore
+And Holy Spirit evermore. Amen.
+### Psalm 4 | vv. 1, 4, 6-8
+! Antiphon: Have mercy on me, Lord, and hear my prayer.
+Answer me when I call, O God of my right!
+Thou hast given me room when I was in distress.
+Be gracious to me, and hear my prayer.
+Be angry, but sin not;
+commune with your own hearts on your beds, and be silent.
+There are many who say, &quot;O that we might see some good!
+Lift up the light of thy countenance upon us, O Lord!&quot;
+Thou hast put more joy in my heart
+than they have when their grain and wine abound.
+In peace I will both lie down and sleep;
+for thou alone, O Lord, makest me dwell in safety.
+! Glory be. Repeat the antiphon.
+### Psalm 134
+! Antiphon: In the silent hours of night, bless the Lord.
+Come, bless the Lord,
+all you servants of the Lord,
+who stand by night in the house of the Lord!
+Lift up your hands to the holy place,
+and bless the Lord!
+May the Lord bless you from Zion,
+he who made heaven and earth!
+! Glory be. Repeat the antiphon.
+### Reading | Deuteronomy 6:4-7
+Hear, O Israel: The Lord our God is one Lord; and you shall love the Lord your God with all your heart, and with all your soul, and with all your might. And these words which I command you this day shall be upon your heart; and you shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise.
+### Responsory
+- Into your hands, Lord, I commend my spirit. | Into your hands, Lord, I commend my spirit.
+- You have redeemed us, Lord God of truth. | I commend my spirit.
+### Nunc Dimittis | Luke 2:29-32
+! Antiphon: Protect us, Lord, as we stay awake; watch over us as we sleep, that awake, we may keep watch with Christ, and asleep, rest in his peace.
+Lord, now lettest thou thy servant depart in peace, according to thy word;
+for mine eyes have seen thy salvation
+which thou hast prepared before the face of all people,
+to be a light to lighten the Gentiles,
+and to be the glory of thy people Israel.
+! Glory be. Repeat the antiphon.
+### Concluding prayer
+Lord, be with us throughout this night. When day comes may we rise from sleep to rejoice in the resurrection of your Christ, who lives and reigns for ever and ever. Amen.
+### Blessing
+- May the all-powerful Lord grant us a restful night and a peaceful death. | Amen.
+### Alma Redemptoris Mater
+! From First Vespers of Advent the Marian antiphon is the Alma Redemptoris Mater.
+Loving Mother of the Redeemer, gate of heaven, star of the sea, assist your people who have fallen yet strive to rise again. To the wonderment of nature you bore your Creator, yet remained a virgin after as before. You who received Gabriel&#x27;s joyful greeting, have pity on us poor sinners.
+</textarea>
 <script>
 {
 const $=s=>document.querySelector(s);
@@ -806,7 +1453,7 @@ function boot(L,D){
   $('#colour').textContent=colour;
   $('#day').textContent=(fresh&&m.day)||today.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
   $('#memo').textContent=fresh?(m.memorial||''):'';
-  if(!fresh){$('#stale').hidden=false;$('#stale').textContent=`The texts below are for ${m.date}. The season and colour above are worked out for today. Refresh day.md with the prompt at the bottom of the page.`}
+  if(!fresh){$('#stale').hidden=false;$('#stale').textContent=`The texts below are for ${m.date}. The season and colour above are worked out for today. None of yesterday.md, today.md or tomorrow.md is dated ${iso}, so the daily rotation may have missed a run. Refresh them with the prompt at the bottom of the page.`}
   if(m.psalter)$('#psalter').textContent='Psalter '+m.psalter;
   const dkey=m.date||iso;
 
@@ -825,7 +1472,7 @@ function boot(L,D){
 
   /* homilies */
   const hs=D.secs.homilies?.items||[],track=$('#track');
-  track.innerHTML=hs.map((h,i)=>`<article class="slide" aria-label="${i+1} of ${hs.length}"><p class="ref">${inl(h.name)}<span>${inl(h.title)}</span></p>${md(h.body)}${h.subs.map(s=>`<h3>${inl(s.name)}</h3><p class="src">${inl(s.title)}</p>${md(s.body)}`).join('')}</article>`).join('')||'<article class="slide"><p>No homilies in day.md yet.</p></article>';
+  track.innerHTML=hs.map((h,i)=>`<article class="slide" aria-label="${i+1} of ${hs.length}"><p class="ref">${inl(h.name)}<span>${inl(h.title)}</span></p>${md(h.body)}${h.subs.map(s=>`<h3>${inl(s.name)}</h3><p class="src">${inl(s.title)}</p>${md(s.body)}`).join('')}</article>`).join('')||'<article class="slide"><p>No homilies in this day\'s file yet.</p></article>';
   let hi=S.h?.d===dkey?S.h.i:0,ht;
   const showH=()=>{$('#hn').textContent=hs.length?`${hi+1} of ${hs.length}`:'';$('#hdots').innerHTML=hs.map((_,i)=>`<i class="${i===hi?'on':''}"></i>`).join('')};
   const goH=(i,smooth=true)=>{hi=Math.max(0,Math.min(hs.length-1,i));track.scrollTo({left:hi*track.clientWidth,behavior:smooth?'smooth':'instant'});S.h={d:dkey,i:hi};save();showH()};
@@ -894,7 +1541,7 @@ function boot(L,D){
   const renderH=()=>{
     $('#hchips').innerHTML=HRS.map(h=>`<button data-h="${h}" aria-pressed="${h===cur}" class="${hmap[h.toLowerCase()]?'':'none'}">${h}</button>`).join('');
     const H=hmap[cur.toLowerCase()],k=dkey+cur,steps=H?.subs||[];
-    if(!steps.length){$('#hout').innerHTML='';$('#hstep').textContent=cur;$('#hname').textContent='Not in today\'s file';$('#htext').innerHTML=`<p>day.md has no ${esc(cur)} today. Ask for it in the daily refresh, or choose another hour.</p>`;$('#htap').hidden=true;return}
+    if(!steps.length){$('#hout').innerHTML='';$('#hstep').textContent=cur;$('#hname').textContent='Not in today\'s file';$('#htext').innerHTML=`<p>This day's file has no ${esc(cur)}. Ask for it in the daily refresh, or choose another hour.</p>`;$('#htap').hidden=true;return}
     const i=Math.min(S.hst[k]||0,steps.length),done=i>=steps.length,s=steps[i];
     $('#htap').hidden=done;
     $('#hout').innerHTML=steps.map((x,j)=>`<button data-j="${j}" class="${j===i?'on':''}">${esc(x.name)}</button>`).join('');
@@ -957,7 +1604,7 @@ function boot(L,D){
   });
 }
 
-const PROMPT=`Rewrite day.md for "Distracted by Christ" for {DATE}. Keep the exact format of the current file.
+const PROMPT=`Write the day file for "Distracted by Christ" for {DATE}. The site keeps three of them, yesterday.md, today.md and tomorrow.md, one per UTC date; put this one in whichever slot is dated {DATE} (or follow the rotation in the repo's CLAUDE.md). Keep the exact format of the current files.
 
 - Front matter: date (YYYY-MM-DD), day (the liturgical day's name), memorial (or blank), season, colour (green | violet | white | red | rose | black), psalter week.
 - # Aspirations: 2 to 4 short aspirations that suit the day or feast.
@@ -969,14 +1616,34 @@ Return only the file.`;
 $('#prompt').textContent=PROMPT.replace('{DATE}',iso);
 $('#copyp').onclick=()=>{const t=$('#prompt').textContent;(navigator.clipboard?.writeText(t)||Promise.reject()).then(()=>{$('#copied').textContent='Copied'},()=>{const r=document.createRange();r.selectNodeContents($('#prompt'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copied').textContent='Selected; press Ctrl+C'})};
 
-/* Served over http(s): the live day.md / library.md win, so a host can update them alone.
+/* Pick the day file for the reader's own local date (iso). days: parsed files, in slot order
+   yesterday, today, tomorrow (null for a missing or unreadable one). An exact date match wins;
+   otherwise the nearest date, ties to the earlier, marked stale; with no dated file, today's slot. */
+function pickDay(days,iso){
+  const ok=days.filter(d=>d&&d.meta);
+  const exact=ok.find(d=>d.meta.date===iso);
+  if(exact)return{day:exact,stale:false};
+  const at=s=>/^\d{4}-\d\d-\d\d$/.test(s||'')?Date.parse(s+'T00:00:00Z'):NaN,t=at(iso);
+  const dated=ok.filter(d=>!isNaN(at(d.meta.date)));
+  if(dated.length&&!isNaN(t)){
+    const best=dated.reduce((a,b)=>{const da=Math.abs(at(a.meta.date)-t),db=Math.abs(at(b.meta.date)-t);return db<da||(db===da&&at(b.meta.date)<at(a.meta.date))?b:a});
+    return{day:best,stale:true};
+  }
+  return{day:days[1]||ok[0]||null,stale:true};
+}
+
+/* Served over http(s): the live day files and library.md win, so a host can update them alone.
    Opened from disk (file://): use the copies build.py inlined below. */
 const inlined=id=>document.getElementById(id)?.value||'';
 const load=f=>/^https?:$/.test(location.protocol)?fetchText(f):Promise.resolve('');
-Promise.all([load('library.md'),load('day.md')]).then(([l,d])=>{
-  l=l||inlined('md-library');d=d||inlined('md-day');
-  if(!l&&!d){$('#day').textContent='No texts found. Run python3 build.py to inline day.md and library.md.';return}
-  try{boot(parse(l),parse(d))}catch(err){$('#day').textContent='Something in day.md could not be read: '+err.message}
+const SLOTS=['yesterday','today','tomorrow'];
+Promise.all([load('library.md'),...SLOTS.map(n=>load(n+'.md'))]).then(([l,...ds])=>{
+  l=l||inlined('md-library');ds=ds.map((d,i)=>d||inlined('md-'+SLOTS[i]));
+  if(!l&&!ds.some(Boolean)){$('#day').textContent='No texts found. Run python3 build.py to inline the day files and library.md.';return}
+  const days=ds.map(d=>{if(!d)return null;try{return parse(d)}catch(e){return null}});
+  const pick=pickDay(days,iso);
+  if(!pick.day&&ds.some(Boolean)){$('#day').textContent='None of yesterday.md, today.md or tomorrow.md could be read.';return}
+  try{boot(parse(l),pick.day||parse(''))}catch(err){$('#day').textContent='Something in the day files could not be read: '+err.message}
 });
 }
 </script>
