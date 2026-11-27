@@ -5,8 +5,8 @@ Static devotional page. No dependencies, no framework. See README.md for the fil
 ## "Update it for the day"
 
 0. **"Today" is the date in South Africa (Africa/Johannesburg, UTC+2)**, not the machine's clock.
-   Get it with `TZ=Africa/Johannesburg date +%F`. The scheduled run fires at 02:10 UTC (04:10 there),
-   so both agree, but always use the South African date in case the schedule moves.
+   Get it with `TZ=Africa/Johannesburg date +%F`. The scheduled run fires at 22:10 UTC, which is
+   00:10 the next day in South Africa, so `date` alone gives the previous day.
 1. Work out that day's liturgical day for the Roman Rite (General Roman Calendar): weekday name,
    feast or memorial, season, liturgical colour, psalter week (week of Ordinary Time mod 4;
    Advent/Lent/Easter weeks start at week I), and the Mass readings.
