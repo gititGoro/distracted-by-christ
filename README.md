@@ -36,8 +36,7 @@ the procedure.
 
 Why three files cover everyone: local time runs from UTC−12 to UTC+14, so a reader's local date is
 always within a day of the UTC date. Between runs the buffer holds T−1, T and T+1. In the ten
-minutes before a run (T−2, T−1, T) every reader's date is still T−1 or T, except UTC+13/+14, whose
-date is T, which is present. Readers stay covered through the run and the Pages deploy, as long as
+minutes before a run (T−2, T−1, T) every reader's date is still T−1 or T. Readers stay covered through the run and the Pages deploy, as long as
 the run lands within about ten hours.
 
 Scheduled task (cloud `/schedule`):
