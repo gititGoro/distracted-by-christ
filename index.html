@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Distracted by Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE  calm, devotional, a page you turn to instead of a feed
+   IDEA   a breviary: black text, red rubrics, a silk ribbon dyed in the colour of the day
+   PICTURE the open page of today's homily, large, turned like leaves
+   COLOUR white or night paper, ink, rubric red, the liturgical colour as ribbon and wash
+   TYPE   Cormorant Garamond for heads, EB Garamond for reading
+   LAYOUT homily leaves left, aspiration and saint right; then chaplet, hours, litany, series, endless feed */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#13110e);--ink:light-dark(#1c1a17,#ece6da);--mute:light-dark(#6a6358,#a59c8d);--line:light-dark(#e7e1d6,#2f2a23);--card:light-dark(#faf8f4,#1b1814);--rub:light-dark(#b3261e,#ff9185);--lit:#2e6b3f;--lit-ink:light-dark(var(--lit),color-mix(in oklab,var(--lit) 55%,#fff));--wash:color-mix(in oklab,var(--lit) 11%,var(--bg))}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "EB Garamond",Georgia,serif;overflow-x:clip}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.05;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(30px,4vw,42px);text-wrap:balance}
+a{color:var(--lit-ink)}
+button,select{font:inherit;font-size:16px;color:inherit}
+button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);cursor:pointer}
+button:hover{border-color:var(--lit-ink)}
+button:focus-visible,select:focus-visible,[tabindex]:focus-visible,a:focus-visible{outline:2px solid var(--lit-ink);outline-offset:2px}
+button.pri{background:var(--lit);color:#fff;border-color:var(--lit)}
+.ico{width:44px;padding:0;font-size:22px;line-height:1}
+select{min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.band{padding:clamp(28px,4vw,56px) max(5vw,16px)}
+.in{max-width:1240px;margin:0 auto}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 max(5vw,16px)}
+.bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:16px;min-height:64px}
+.brand{font:700 26px/1 "Cormorant Garamond",serif;color:var(--ink);text-decoration:none;white-space:nowrap}
+.lday{flex:1;font-size:16px;line-height:1.3}
+.lday span{display:block;color:var(--mute)}
+.ribbon{align-self:flex-start;background:var(--lit);color:#fff;padding:10px 14px 22px;font-size:15px;line-height:1.2;text-align:center;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 12px),0 100%);margin-bottom:-14px;max-width:9em}
+.ribbon small{display:block;opacity:.85;font-size:13px}
+.links{display:flex;gap:4px;max-width:1240px;margin:0 auto;padding-bottom:6px;scrollbar-width:none}
+.scroll{overflow-x:auto}
+.links a{flex:none;padding:6px 10px;border-radius:999px;color:var(--mute);text-decoration:none;font-size:16px}
+.links a:hover{color:var(--ink);background:var(--wash)}
+#stale{margin:0;padding:8px max(5vw,16px);background:var(--wash);font-size:16px}
+.hero{background:var(--wash)}
+.hgrid{display:grid;gap:clamp(20px,3vw,40px)}
+@media(min-width:900px){.hgrid{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.ctl{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--mute);white-space:nowrap}
+.leaf{background:var(--bg);border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 0 var(--line),0 3px 0 -1px var(--bg),0 4px 0 -1px var(--line);border-left:6px solid var(--lit)}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;align-items:flex-start}
+.slide{flex:0 0 100%;scroll-snap-align:start;padding:clamp(20px,3vw,40px)}
+.ref{font:600 clamp(26px,3vw,34px)/1.1 "Cormorant Garamond",serif;margin:0 0 4px}
+.ref span,.src{display:block;font:italic 16px/1.4 "EB Garamond",serif;color:var(--rub);margin-top:4px}
+blockquote{margin:16px 0;padding:0;font-size:19px}
+.slide blockquote{font-size:20px}
+.slide h3{font-size:24px;margin-top:24px}
+.slide h3+.src{margin-bottom:8px}
+p{margin:0 0 12px;max-width:68ch}
+.rub{color:var(--rub);font-style:italic;font-size:16px}
+.vr{margin:0 0 6px}
+.vr .r{color:var(--mute);font-style:italic}
+.vr .r.rep{opacity:.75}
+.vr::before{content:"℣ ";color:var(--rub)}
+.vr .r::before{content:" ℟ ";color:var(--rub);font-style:normal}
+.li::before{content:"✠ ";color:var(--rub)}
+.dots{display:flex;gap:6px;justify-content:center;padding:12px 0 0}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--lit-ink)}
+.side{display:grid;gap:20px;align-content:start}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px}
+.lab{font-size:16px;color:var(--rub);font-style:italic;margin:0 0 6px}
+.aspt{font:600 clamp(24px,2.6vw,30px)/1.15 "Cormorant Garamond",serif;margin:0 0 14px;text-wrap:balance}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mute{color:var(--mute);font-size:16px}
+#quote{font-size:20px;margin:0 0 10px}
+.who{font-size:16px;margin:0 0 12px}
+.who span{color:var(--mute);font-style:italic}
+.cgrid{display:grid;gap:24px}
+@media(min-width:900px){.cgrid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
+.pcard{cursor:pointer;padding:clamp(20px,3vw,36px);min-height:300px;display:flex;flex-direction:column;user-select:none}
+.pcard .tap{margin-top:auto;color:var(--mute);font-size:16px}
+.step{font-size:16px;color:var(--rub);font-style:italic;margin:0 0 4px}
+.pname{font-size:clamp(28px,3.4vw,38px);margin:0 0 14px}
+.beads{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:0 0 16px}
+.beads i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--lit-ink)}
+.beads i.l{width:16px;height:16px}
+.beads i.done{background:var(--lit-ink)}
+.beads i.now{background:var(--rub);border-color:var(--rub);transform:scale(1.35)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.chips button[aria-pressed=true]{background:var(--lit);border-color:var(--lit);color:#fff}
+.chips button.none{color:var(--mute);border-style:dashed}
+.outline{display:flex;flex-wrap:wrap;gap:4px 2px;font-size:16px;margin:0 0 16px}
+.outline button{min-height:36px;padding:0 10px;border:0;background:none;color:var(--mute)}
+.outline button.on{color:var(--ink);background:var(--wash)}
+.lit{columns:2 20em;column-gap:40px}
+.lit p{break-inside:avoid}
+.ygrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.ynum{font:700 clamp(36px,4vw,48px)/1 "Cormorant Garamond",serif;margin:6px 0}
+.meter{height:6px;background:var(--line);border-radius:3px;margin:8px 0 14px}
+.meter i{display:block;height:100%;background:var(--lit-ink);border-radius:3px}
+.watch{display:inline-flex;align-items:center;min-height:44px;font-size:18px}
+.feed{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+.fc{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--card)}
+.fc.a{background:var(--wash);text-align:center}
+.fc.a p{font:600 26px/1.15 "Cormorant Garamond",serif;margin:8px auto 14px}
+.fc h3{font-size:22px;margin:0 0 6px}
+#sent{height:1px}
+footer{border-top:1px solid var(--line)}
+footer pre{white-space:pre-wrap;font:15px/1.5 ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--line);padding:14px;border-radius:8px;max-height:360px;overflow:auto}
+.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:color-mix(in oklab,var(--bg) 70%,transparent);backdrop-filter:blur(6px)}
+.modal[hidden]{display:none}
+.mbox{max-width:560px;width:100%;background:var(--bg);border:1px solid var(--line);border-top:8px solid var(--lit);border-radius:8px;padding:clamp(24px,5vw,44px);text-align:center;box-shadow:0 20px 60px -30px #000}
+.mbox p.big{font:600 clamp(30px,5vw,42px)/1.1 "Cormorant Garamond",serif;margin:8px auto 24px;text-wrap:balance}
+.mbox .row{justify-content:center}
+@media(max-width:600px){.lday{display:none}.ribbon{margin-left:auto}.pcard{min-height:240px}}
+@media(prefers-reduced-motion:no-preference){.beads i{transition:transform .25s,background .25s}.track{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="#homily">Distracted by Christ</a>
+    <div class="lday"><b id="day">Loading the day…</b><span id="memo"></span></div>
+    <div class="ribbon"><span id="season"></span><small id="colour"></small></div>
+  </div>
+  <nav class="links scroll" aria-label="Sections">
+    <a href="#homily">Homily</a><a href="#saints">Saints</a><a href="#chaplet">Chaplet</a><a href="#hours">Hours</a><a href="#litany">Litany</a><a href="#year">In a year</a><a href="#more">Keep going</a>
+  </nav>
+</header>
+<p id="stale" hidden></p>
+
+<section class="band hero" id="homily">
+  <div class="in hgrid">
+    <div>
+      <div class="head">
+        <h2>A homily between tasks</h2>
+        <div class="ctl"><button class="ico" id="hprev" aria-label="Previous passage">‹</button><span id="hn"></span><button class="ico" id="hnext" aria-label="Next passage">›</button></div>
+      </div>
+      <div class="leaf"><div class="track" id="track" tabindex="0" aria-label="Gospel passages with commentary"></div></div>
+      <div class="dots" id="hdots"></div>
+    </div>
+    <aside class="side">
+      <div class="card">
+        <p class="lab">Aspiration</p>
+        <p class="aspt" id="asp"></p>
+        <div class="row"><button class="pri" id="aspgo">Pray it</button><span class="mute" id="count"></span></div>
+      </div>
+      <div class="card" id="saints">
+        <p class="lab">From the saints</p>
+        <blockquote id="quote"></blockquote>
+        <p class="who"><b id="qwho"></b> <span id="qsrc"></span></p>
+        <div class="ctl"><button class="ico" id="qprev" aria-label="Previous quote">‹</button><span id="qn"></span><button class="ico" id="qnext" aria-label="Next quote">›</button></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="band" id="chaplet">
+  <div class="in">
+    <div class="head"><h2>Pray along</h2><label class="ctl">Chaplet <select id="csel"></select></label></div>
+    <div class="cgrid">
+      <div class="leaf pcard" id="cnext" role="button" tabindex="0" aria-label="Next prayer">
+        <p class="step" id="cdec"></p>
+        <h3 class="pname" id="cname"></h3>
+        <div id="ctext"></div>
+        <span class="tap">Tap, Space or Enter for the next prayer</span>
+      </div>
+      <div>
+        <p class="lab" id="cset"></p>
+        <div class="beads" id="beads" aria-hidden="true"></div>
+        <p class="mute" id="cprog"></p>
+        <div class="row"><button id="cback">Back one</button><button id="crestart">Start again</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band hero" id="hours">
+  <div class="in">
+    <div class="head"><h2>Liturgy of the Hours</h2><span class="ctl" id="psalter"></span></div>
+    <div class="chips" id="hchips"></div>
+    <div class="outline" id="hout"></div>
+    <div class="leaf pcard" id="hcard" role="button" tabindex="0" aria-label="Next part of the hour">
+      <p class="step" id="hstep"></p>
+      <h3 class="pname" id="hname"></h3>
+      <div id="htext"></div>
+      <span class="tap" id="htap">Tap for the next part</span>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="litany">
+  <div class="in">
+    <div class="head"><h2 id="litname">Litany</h2><button id="litdone"></button></div>
+    <div class="lit" id="litbody"></div>
+  </div>
+</section>
+
+<section class="band hero" id="year">
+  <div class="in">
+    <div class="head"><h2>In a year</h2><span class="mute">Your day in each series is remembered and moves on by itself each day.</span></div>
+    <div class="ygrid" id="ygrid"></div>
+  </div>
+</section>
+
+<section class="band" id="more">
+  <div class="in">
+    <div class="head"><h2>Keep going</h2><span class="mute">It doesn't run out. Neither does he.</span></div>
+    <div class="feed" id="feed"></div>
+    <div id="sent"></div>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="in">
+    <p class="mute">The texts here come from <code>day.md</code>, which is rewritten each day, and <code>library.md</code>, which holds the fixed prayers. Commentaries marked “adapted” are paraphrases; check them against a breviary.</p>
+    <details>
+      <summary>Prompt for the daily refresh</summary>
+      <div class="row" style="margin:12px 0"><button id="copyp">Copy prompt</button><span class="mute" id="copied" aria-live="polite"></span></div>
+      <pre id="prompt"></pre>
+    </details>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mtext">
+    <p class="lab">Before you scroll</p>
+    <p class="big" id="mtext"></p>
+    <div class="row"><button class="pri" id="amen">Amen</button><button id="another">Another</button></div>
+  </div>
+</div>
+
+<textarea hidden id="md-library">&lt;!--
+library.md: the fixed texts. Change rarely.
+Format: &quot;# Section&quot;, &quot;## Item | subtitle&quot;, &quot;### Sub-item | subtitle&quot;.
+&quot;- V | R&quot; renders a versicle and response; a &quot;- &quot; line with no &quot;|&quot; reuses the last response.
+&quot;! text&quot; renders a red rubric. &quot;&gt; text&quot; renders a quotation.
+Chaplet steps: names from # Prayers, separated by &quot;;&quot;. &quot;×10&quot; repeats one; &quot;5 × [a; b ×10]&quot; repeats a group.
+&quot;Mystery&quot; inside a group is replaced by the day&#x27;s rosary mystery for that decade.
+--&gt;
+
+# Aspirations
+- Jesus, I trust in You.
+- Jesus, Mary and Joseph, I love you; save souls.
+- Lord Jesus Christ, Son of the living God, have mercy on me, a sinner.
+- My Jesus, mercy.
+- Sacred Heart of Jesus, I place all my trust in Thee.
+- My Lord and my God.
+- Jesus, meek and humble of heart, make my heart like unto Thine.
+- Come, Holy Spirit.
+- Not my will, but Thine be done.
+- Holy Mary, Mother of God, pray for me.
+- All for Thee, most Sacred Heart of Jesus.
+- Lord, that I may see.
+- St Joseph, patron of workers, pray for us.
+- St Michael the Archangel, defend us in battle.
+- Blessed be God.
+- O God, come to my assistance; O Lord, make haste to help me.
+
+# Prayers
+## Sign of the Cross
+In the name of the Father, and of the Son, and of the Holy Spirit. Amen.
+
+## Apostles&#x27; Creed
+I believe in God, the Father almighty, Creator of heaven and earth, and in Jesus Christ, his only Son, our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died and was buried; he descended into hell; on the third day he rose again from the dead; he ascended into heaven, and is seated at the right hand of God the Father almighty; from there he will come to judge the living and the dead.
+I believe in the Holy Spirit, the holy catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and life everlasting. Amen.
+
+## Our Father
+Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.
+
+## Hail Mary
+Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus.
+Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.
+
+## Glory Be
+Glory be to the Father, and to the Son, and to the Holy Spirit, as it was in the beginning, is now, and ever shall be, world without end. Amen.
+
+## Fatima Prayer
+O my Jesus, forgive us our sins, save us from the fires of hell; lead all souls to heaven, especially those in most need of thy mercy.
+
+## Hail Holy Queen
+Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us; and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.
+- Pray for us, O holy Mother of God. | That we may be made worthy of the promises of Christ.
+
+## Rosary Prayer
+Let us pray. O God, whose only-begotten Son, by his life, death and resurrection, has purchased for us the rewards of eternal life; grant, we beseech thee, that meditating upon these mysteries of the most holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise. Through the same Christ our Lord. Amen.
+
+## Eternal Father
+Eternal Father, I offer you the Body and Blood, Soul and Divinity of your dearly beloved Son, our Lord Jesus Christ, in atonement for our sins and those of the whole world.
+
+## For the sake of His sorrowful Passion
+For the sake of his sorrowful Passion, have mercy on us and on the whole world.
+
+## Holy God
+Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.
+
+## Jesus, I trust in You
+! Closing invocation.
+Jesus, I trust in You.
+
+## The Angel of the Lord
+- The Angel of the Lord declared unto Mary. | And she conceived of the Holy Spirit.
+
+## Behold the handmaid
+- Behold the handmaid of the Lord. | Be it done unto me according to thy word.
+
+## The Word was made flesh
+- And the Word was made flesh. | And dwelt among us.
+
+## Angelus Prayer
+- Pray for us, O holy Mother of God. | That we may be made worthy of the promises of Christ.
+Let us pray. Pour forth, we beseech thee, O Lord, thy grace into our hearts; that we, to whom the Incarnation of Christ thy Son was made known by the message of an angel, may by his Passion and Cross be brought to the glory of his Resurrection. Through the same Christ our Lord. Amen.
+
+# Chaplets
+## Rosary | Today&#x27;s mysteries, five decades
+- Sign of the Cross; Apostles&#x27; Creed; Our Father; Hail Mary ×3; Glory Be
+- 5 × [Mystery; Our Father; Hail Mary ×10; Glory Be; Fatima Prayer]
+- Hail Holy Queen; Rosary Prayer; Sign of the Cross
+
+## Divine Mercy Chaplet | On ordinary rosary beads
+- Sign of the Cross; Our Father; Hail Mary; Apostles&#x27; Creed
+- 5 × [Eternal Father; For the sake of His sorrowful Passion ×10]
+- Holy God ×3; Jesus, I trust in You; Sign of the Cross
+
+## Angelus | Morning, noon and evening
+- The Angel of the Lord; Hail Mary; Behold the handmaid; Hail Mary; The Word was made flesh; Hail Mary; Angelus Prayer
+
+# Mysteries
+## Joyful | Monday, Saturday
+### The Annunciation
+&quot;Behold, I am the handmaid of the Lord; let it be to me according to your word.&quot; (Luke 1:38)
+*Fruit: humility.*
+### The Visitation
+&quot;Blessed are you among women, and blessed is the fruit of your womb!&quot; (Luke 1:42)
+*Fruit: love of neighbour.*
+### The Nativity
+&quot;She gave birth to her first-born son and wrapped him in swaddling cloths, and laid him in a manger.&quot; (Luke 2:7)
+*Fruit: poverty of spirit.*
+### The Presentation in the Temple
+&quot;Mine eyes have seen thy salvation.&quot; (Luke 2:30)
+*Fruit: obedience.*
+### The Finding in the Temple
+&quot;Did you not know that I must be in my Father&#x27;s house?&quot; (Luke 2:49)
+*Fruit: joy in finding Jesus.*
+
+## Sorrowful | Tuesday, Friday
+### The Agony in the Garden
+&quot;Father, if thou art willing, remove this cup from me; nevertheless not my will, but thine, be done.&quot; (Luke 22:42)
+*Fruit: conformity to the will of God.*
+### The Scourging at the Pillar
+&quot;Then Pilate took Jesus and scourged him.&quot; (John 19:1)
+*Fruit: purity.*
+### The Crowning with Thorns
+&quot;And plaiting a crown of thorns they put it on his head.&quot; (Matthew 27:29)
+*Fruit: moral courage.*
+### The Carrying of the Cross
+&quot;And he went out, bearing his own cross.&quot; (John 19:17)
+*Fruit: patience.*
+### The Crucifixion
+&quot;Father, into thy hands I commit my spirit!&quot; (Luke 23:46)
+*Fruit: perseverance.*
+
+## Glorious | Wednesday, Sunday
+### The Resurrection
+&quot;He is not here; for he has risen, as he said.&quot; (Matthew 28:6)
+*Fruit: faith.*
+### The Ascension
+&quot;While he blessed them, he parted from them, and was carried up into heaven.&quot; (Luke 24:51)
+*Fruit: hope.*
+### The Descent of the Holy Spirit
+&quot;And they were all filled with the Holy Spirit.&quot; (Acts 2:4)
+*Fruit: love of God.*
+### The Assumption
+&quot;Henceforth all generations will call me blessed.&quot; (Luke 1:48)
+*Fruit: the grace of a happy death.*
+### The Coronation of Our Lady
+&quot;A woman clothed with the sun, and on her head a crown of twelve stars.&quot; (Revelation 12:1)
+*Fruit: trust in Mary&#x27;s intercession.*
+
+## Luminous | Thursday
+### The Baptism of the Lord
+&quot;This is my beloved Son, with whom I am well pleased.&quot; (Matthew 3:17)
+*Fruit: openness to the Holy Spirit.*
+### The Wedding at Cana
+&quot;Do whatever he tells you.&quot; (John 2:5)
+*Fruit: to Jesus through Mary.*
+### The Proclamation of the Kingdom
+&quot;The kingdom of God is at hand; repent, and believe in the gospel.&quot; (Mark 1:15)
+*Fruit: repentance.*
+### The Transfiguration
+&quot;His face shone like the sun, and his garments became white as light.&quot; (Matthew 17:2)
+*Fruit: desire for holiness.*
+### The Institution of the Eucharist
+&quot;This is my body which is given for you. Do this in remembrance of me.&quot; (Luke 22:19)
+*Fruit: adoration.*
+
+# In a Year
+## Bible in a Year | Fr Mike Schmitz, Ascension
+start: 01-01
+days: 365
+url: https://www.youtube.com/results?search_query=Bible+in+a+Year+Fr+Mike+Schmitz+Day+{day}
+
+## Catechism in a Year | Fr Mike Schmitz, Ascension
+start: 01-01
+days: 365
+url: https://www.youtube.com/results?search_query=Catechism+in+a+Year+Fr+Mike+Schmitz+Day+{day}
+
+## Rosary in a Year | Ascension
+start: 01-01
+days: 365
+url: https://www.youtube.com/results?search_query=Rosary+in+a+Year+Ascension+Day+{day}
+
+## Diary of St Faustina in a Year | Search
+start: 01-01
+days: 365
+url: https://www.youtube.com/results?search_query=Diary+of+St+Faustina+in+a+Year+Day+{day}
+</textarea>
+<textarea hidden id="md-day">---
+date: 2026-11-27
+day: Friday of the 34th Week in Ordinary Time
+memorial: Our Lady of the Miraculous Medal, where kept
+season: Ordinary Time
+colour: green
+psalter: Week II
+---
+&lt;!--
+day.md: rewritten each day. Same syntax as library.md.
+colour: green | violet | white | red | rose | black
+Homilies: &quot;## Reference | label&quot;, gospel as &quot;&gt; &quot; lines, then &quot;### Father | Work&quot; and the commentary.
+Hours: &quot;## Lauds&quot; (Terce, Sext, None, Vespers, Compline); each &quot;### Step | note&quot; is one click.
+Mark paraphrase as (adapted). Never invent a quotation.
+--&gt;
+
+# Aspirations
+- O Mary, conceived without sin, pray for us who have recourse to thee.
+- Heaven and earth will pass away, but your words will not pass away.
+
+# Homilies
+## Luke 21:29-33 | Gospel of the day
+&gt; And he told them a parable: &quot;Look at the fig tree, and all the trees; as soon as they come out in leaf, you see for yourselves and know that the summer is already near. So also, when you see these things taking place, you know that the kingdom of God is near. Truly, I say to you, this generation will not pass away till all has taken place. Heaven and earth will pass away, but my words will not pass away.&quot;
+### St Gregory the Great | Homilies on the Gospels, 1 (adapted)
+The world is growing old. Like a body that in youth was strong and now bends under age, it is pressed by troubles, and its troubles are the signs our Lord foretold. He did not tell us these things to frighten us, but so that the end, when it comes, should find us ready.
+So he points to the fig tree. When its leaves come, we know summer is near; when the world withers, we should know the kingdom is near. What passes is not worth our grip. Heaven and earth will pass away; hold instead to the word that does not.
+
+## Mark 13:33-37 | Sunday, First Sunday of Advent
+&gt; &quot;Take heed, watch; for you do not know when the time will come. It is like a man going on a journey, when he leaves home and puts his servants in charge, each with his work, and commands the doorkeeper to be on the watch. Watch therefore, for you do not know when the master of the house will come, in the evening, or at midnight, or at cockcrow, or in the morning, lest he come suddenly and find you asleep. And what I say to you I say to all: Watch.&quot;
+### St Ephrem the Syrian | Commentary on the Diatessaron, 18 (adapted)
+Christ kept the hour of his coming hidden so that we would keep watch, each of us thinking he might come in our own day. Had he told us the hour, his coming would mean little; we would wait idly until the date drew near.
+He said he would come, but not when, and so every generation and every age longs for him. Watch, then: not only with open eyes, but with a heart that does not sleep.
+
+## Luke 10:38-42 | Martha and Mary
+&gt; Now as they went on their way, he entered a village; and a woman named Martha received him into her house. And she had a sister called Mary, who sat at the Lord&#x27;s feet and listened to his teaching. But Martha was distracted with much serving; and she went to him and said, &quot;Lord, do you not care that my sister has left me to serve alone? Tell her then to help me.&quot; But the Lord answered her, &quot;Martha, Martha, you are anxious and troubled about many things; one thing is needful. Mary has chosen the good portion, which shall not be taken away from her.&quot;
+### St Augustine | Sermon 103 (adapted)
+Martha&#x27;s work was good: she served the Lord in his body. But Mary had chosen the better part. Martha was busy with many things; Mary was intent on one. The many will pass; the one remains.
+What Mary chose grows greater, and what Martha did will one day cease, for in heaven no one will be hungry to be fed. So the Lord does not blame Martha&#x27;s work. He tells her where her work is going.
+
+## Matthew 6:6-8 | Praying in secret
+&gt; &quot;But when you pray, go into your room and shut the door and pray to your Father who is in secret; and your Father who sees in secret will reward you. And in praying do not heap up empty phrases as the Gentiles do; for they think that they will be heard for their many words. Do not be like them, for your Father knows what you need before you ask him.&quot;
+### St Cyprian of Carthage | On the Lord&#x27;s Prayer, 4 (adapted)
+When we pray, let our words be ordered and quiet. Think that you stand in the sight of God. God hears the heart, not the voice. He who sees our thoughts does not need to be reminded by shouting.
+Hannah, praying for a son, spoke in her heart; her lips moved but her voice was not heard, and God heard her. Pray like that: briefly, in secret, with faith.
+
+## John 15:4-5 | The vine and the branches
+&gt; &quot;Abide in me, and I in you. As the branch cannot bear fruit by itself, unless it abides in the vine, neither can you, unless you abide in me. I am the vine, you are the branches. He who abides in me, and I in him, he it is that bears much fruit, for apart from me you can do nothing.&quot;
+### St Cyril of Alexandria | Commentary on John, 10 (adapted)
+The Lord calls himself the vine, and us the branches, to show how much we gain by being joined to him and how important it is to remain in his love. As branches draw their life from the vine, we draw ours from him.
+Those joined to him by faith share his nature through the Spirit. Cut off, a branch withers, whatever it was doing before.
+
+## Luke 18:13 | The tax collector&#x27;s prayer
+&gt; But the tax collector, standing far off, would not even lift up his eyes to heaven, but beat his breast, saying, &quot;God, be merciful to me a sinner!&quot;
+### St Augustine | Sermon 115 (adapted)
+He stood far off, yet he drew near to God. The Lord is high, yet he looks on the lowly. The Pharisee raised himself up and God stayed far from him; the tax collector stood far away and God came close.
+He did not dare lift his eyes. He looked at himself so that God would look at him with mercy, and he went home justified.
+
+# Litany | Litany of Loreto
+! Kept today for Our Lady of the Miraculous Medal. A Friday would otherwise take the Sacred Heart.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, have mercy. | Christ, have mercy.
+- Lord, have mercy. | Lord, have mercy.
+- Christ, hear us. | Christ, graciously hear us.
+- God the Father of heaven, | have mercy on us.
+- God the Son, Redeemer of the world,
+- God the Holy Spirit,
+- Holy Trinity, one God,
+- Holy Mary, | pray for us.
+- Holy Mother of God,
+- Holy Virgin of virgins,
+- Mother of Christ,
+- Mother of the Church,
+- Mother of Mercy,
+- Mother of divine grace,
+- Mother of Hope,
+- Mother most pure,
+- Mother most chaste,
+- Mother inviolate,
+- Mother undefiled,
+- Mother most amiable,
+- Mother most admirable,
+- Mother of good counsel,
+- Mother of our Creator,
+- Mother of our Saviour,
+- Virgin most prudent,
+- Virgin most venerable,
+- Virgin most renowned,
+- Virgin most powerful,
+- Virgin most merciful,
+- Virgin most faithful,
+- Mirror of justice,
+- Seat of wisdom,
+- Cause of our joy,
+- Spiritual vessel,
+- Vessel of honour,
+- Singular vessel of devotion,
+- Mystical rose,
+- Tower of David,
+- Tower of ivory,
+- House of gold,
+- Ark of the covenant,
+- Gate of heaven,
+- Morning star,
+- Health of the sick,
+- Refuge of sinners,
+- Solace of migrants,
+- Comfort of the afflicted,
+- Help of Christians,
+- Queen of Angels,
+- Queen of Patriarchs,
+- Queen of Prophets,
+- Queen of Apostles,
+- Queen of Martyrs,
+- Queen of Confessors,
+- Queen of Virgins,
+- Queen of all Saints,
+- Queen conceived without original sin,
+- Queen assumed into heaven,
+- Queen of the most holy Rosary,
+- Queen of families,
+- Queen of peace,
+- Lamb of God, who takes away the sins of the world, | spare us, O Lord.
+- Lamb of God, who takes away the sins of the world, | graciously hear us, O Lord.
+- Lamb of God, who takes away the sins of the world, | have mercy on us.
+- Pray for us, O holy Mother of God, | that we may be made worthy of the promises of Christ.
+
+Let us pray. Grant, we beseech you, O Lord God, that we your servants may enjoy perpetual health of mind and body; and by the glorious intercession of the Blessed Mary, ever Virgin, may be delivered from present sorrow and obtain eternal joy. Through Christ our Lord. Amen.
+
+# Saints
+## St Augustine | Confessions, X.27
+Late have I loved you, O Beauty ever ancient, ever new, late have I loved you! You were within me, but I was outside, and it was there that I searched for you. You were with me, but I was not with you. You called, you shouted, and you broke through my deafness.
+
+## St Francis de Sales | Introduction to the Devout Life, II.12 (adapted)
+Remember to retire at various times into the solitude of your heart, even while you are outwardly busy with work or conversation. This mental solitude cannot be disturbed by the many people around you, for they are not standing about your heart but about your body.
+
+## St Thérèse of Lisieux | Story of a Soul, Manuscript C
+For me, prayer is a surge of the heart; it is a simple look turned toward heaven, it is a cry of recognition and of love, embracing both trial and joy.
+
+## St Augustine | Confessions, I.1
+You have made us for yourself, O Lord, and our heart is restless until it rests in you.
+
+## St Catherine of Siena | The Dialogue, 167
+You, eternal Trinity, are a deep sea: the more I enter you, the more I find, and the more I find, the more I seek you.
+
+## St Faustina Kowalska | Diary, 300
+Mankind will not have peace until it turns with trust to My mercy.
+
+## St Thomas Aquinas | Summa Theologiae, I q.1 a.8 ad 2
+Grace does not destroy nature, but perfects it.
+
+## St John Vianney | Catechism on Prayer
+My little children, your hearts are small, but prayer stretches them and makes them capable of loving God.
+
+# Hours
+## Lauds
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Hymn | Iam lucis orto sidere
+Now that the daylight fills the sky,
+We lift our hearts to God on high,
+That he, in all we do or say,
+Would keep us free from harm today.
+All praise to God the Father be,
+All praise, eternal Son, to thee,
+Whom with the Spirit we adore
+For ever and for evermore. Amen.
+### Psalm 51 | vv. 1-3, 10-12
+! Antiphon: A humble, contrite heart, O God, you will not spurn.
+Have mercy on me, O God, according to thy steadfast love;
+according to thy abundant mercy blot out my transgressions.
+Wash me thoroughly from my iniquity,
+and cleanse me from my sin!
+For I know my transgressions,
+and my sin is ever before me.
+Create in me a clean heart, O God,
+and put a new and right spirit within me.
+Cast me not away from thy presence,
+and take not thy holy Spirit from me.
+Restore to me the joy of thy salvation,
+and uphold me with a willing spirit.
+! Glory be. Repeat the antiphon.
+### Psalm 147 | vv. 12-20
+Praise the Lord, O Jerusalem!
+Praise your God, O Zion!
+For he strengthens the bars of your gates;
+he blesses your sons within you.
+He makes peace in your borders;
+he fills you with the finest of the wheat.
+He sends forth his command to the earth;
+his word runs swiftly.
+He gives snow like wool;
+he scatters hoarfrost like ashes.
+He sends forth his word, and melts them;
+he makes his wind blow, and the waters flow.
+He declares his word to Jacob,
+his statutes and ordinances to Israel.
+! Glory be.
+### Reading | Ephesians 2:13-14
+But now in Christ Jesus you who once were far off have been brought near in the blood of Christ. For he is our peace, who has made us both one, and has broken down the dividing wall of hostility.
+### Benedictus | Luke 1:68-79
+! Antiphon: Heaven and earth will pass away, but my words will not pass away.
+Blessed be the Lord God of Israel, for he has visited and redeemed his people,
+and has raised up a horn of salvation for us in the house of his servant David,
+as he spoke by the mouth of his holy prophets from of old,
+that we should be saved from our enemies, and from the hand of all who hate us;
+to perform the mercy promised to our fathers, and to remember his holy covenant,
+the oath which he swore to our father Abraham, to grant us
+that we, being delivered from the hand of our enemies,
+might serve him without fear, in holiness and righteousness before him all the days of our life.
+And you, child, will be called the prophet of the Most High;
+for you will go before the Lord to prepare his ways,
+to give knowledge of salvation to his people in the forgiveness of their sins,
+through the tender mercy of our God,
+when the day shall dawn upon us from on high
+to give light to those who sit in darkness and in the shadow of death,
+to guide our feet into the way of peace.
+! Glory be. Repeat the antiphon.
+### Intercessions
+! Response: Lord, make us ready for your coming.
+- You give us work to do today; let us do it as servants who wait for their master. | Lord, make us ready for your coming.
+- When our attention scatters, call us back to you.
+- Keep our hearts awake while our hands are busy.
+- Bring all who have died in your friendship into the summer of your kingdom.
+### Our Father
+Our Father, who art in heaven, hallowed be thy name; thy kingdom come, thy will be done on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil.
+### Concluding prayer | Collect, 34th week
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through our Lord Jesus Christ, your Son, who lives and reigns with you in the unity of the Holy Spirit, God, for ever and ever. Amen.
+### Dismissal
+- May the Lord bless us, protect us from all evil and bring us to everlasting life. | Amen.
+
+## Sext
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Psalm 119 | vv. 105-112
+Thy word is a lamp to my feet
+and a light to my path.
+I have sworn an oath and confirmed it,
+to observe thy righteous ordinances.
+I am sorely afflicted;
+give me life, O Lord, according to thy word!
+Accept my offerings of praise, O Lord,
+and teach me thy ordinances.
+I hold my life in my hand continually,
+but I do not forget thy law.
+The wicked have laid a snare for me,
+but I do not stray from thy precepts.
+Thy testimonies are my heritage for ever;
+yea, they are the joy of my heart.
+I incline my heart to perform thy statutes
+for ever, to the end.
+! Glory be.
+### Reading | Galatians 6:2
+Bear one another&#x27;s burdens, and so fulfil the law of Christ.
+### Prayer
+Stir up the will of your faithful, we pray, O Lord, that, striving more eagerly to bring your divine work to fruitful completion, they may receive in greater measure the healing remedies your kindness bestows. Through Christ our Lord. Amen.
+### Conclusion
+- Let us praise the Lord. | And give him thanks.
+
+## Compline
+### Opening
+- O God, come to my assistance. | O Lord, make haste to help me.
+- Glory be to the Father, and to the Son, and to the Holy Spirit: | as it was in the beginning, is now, and ever shall be, world without end. Amen. Alleluia.
+### Examination of conscience
+! Pause and look back over the day.
+I confess to almighty God and to you, my brothers and sisters, that I have greatly sinned, in my thoughts and in my words, in what I have done and in what I have failed to do, through my fault, through my fault, through my most grievous fault; therefore I ask blessed Mary ever-Virgin, all the Angels and Saints, and you, my brothers and sisters, to pray for me to the Lord our God.
+- May almighty God have mercy on us, forgive us our sins, and bring us to everlasting life. | Amen.
+### Hymn | Te lucis ante terminum
+Before the ending of the day,
+Creator of the world, we pray
+That with thy wonted favour thou
+Wouldst be our guard and keeper now.
+All praise, eternal Son, to thee
+Whose advent sets thy people free,
+Whom with the Father we adore
+And Holy Spirit evermore. Amen.
+### Psalm 91 | vv. 1-6, 14-16
+! Antiphon: Night holds no terrors for me sleeping under God&#x27;s wings.
+! Sunday&#x27;s Compline may be prayed on any night.
+He who dwells in the shelter of the Most High,
+who abides in the shadow of the Almighty,
+will say to the Lord, &quot;My refuge and my fortress;
+my God, in whom I trust.&quot;
+For he will deliver you from the snare of the fowler
+and from the deadly pestilence;
+he will cover you with his pinions,
+and under his wings you will find refuge;
+his faithfulness is a shield and buckler.
+You will not fear the terror of the night,
+nor the arrow that flies by day,
+nor the pestilence that stalks in darkness,
+nor the destruction that wastes at noonday.
+Because he cleaves to me in love, I will deliver him;
+I will protect him, because he knows my name.
+When he calls to me, I will answer him;
+I will be with him in trouble,
+I will rescue him and honour him.
+With long life I will satisfy him,
+and show him my salvation.
+! Glory be. Repeat the antiphon.
+### Reading | Revelation 22:4-5
+They shall see his face, and his name shall be on their foreheads. And night shall be no more; they need no light of lamp or sun, for the Lord God will be their light, and they shall reign for ever and ever.
+### Responsory
+- Into your hands, Lord, I commend my spirit. | Into your hands, Lord, I commend my spirit.
+- You have redeemed us, Lord God of truth. | I commend my spirit.
+### Nunc Dimittis | Luke 2:29-32
+! Antiphon: Protect us, Lord, as we stay awake; watch over us as we sleep, that awake, we may keep watch with Christ, and asleep, rest in his peace.
+Lord, now lettest thou thy servant depart in peace, according to thy word;
+for mine eyes have seen thy salvation
+which thou hast prepared before the face of all people,
+to be a light to lighten the Gentiles,
+and to be the glory of thy people Israel.
+! Glory be. Repeat the antiphon.
+### Concluding prayer
+All-powerful God, keep us united with your Son in his death and burial so that we may rise to new life with him, who lives and reigns for ever and ever. Amen.
+### Blessing
+- May the all-powerful Lord grant us a restful night and a peaceful death. | Amen.
+### Salve Regina
+Hail, holy Queen, Mother of mercy, our life, our sweetness and our hope. To thee do we cry, poor banished children of Eve; to thee do we send up our sighs, mourning and weeping in this valley of tears. Turn then, most gracious advocate, thine eyes of mercy toward us; and after this our exile show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.
+</textarea>
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inl=t=>esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>').replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+const md=lines=>{
+  const out=[];let para=[],quote=[],lastR='';
+  const flush=()=>{if(para.length)out.push('<p>'+para.map(inl).join('<br>')+'</p>');if(quote.length)out.push('<blockquote>'+quote.map(inl).join('<br>')+'</blockquote>');para=[];quote=[]};
+  for(const l of lines){
+    const t=l.trim();
+    if(!t){flush();continue}
+    if(t==='>'||t.startsWith('> ')){if(para.length)flush();quote.push(t.slice(2));continue}
+    if(t.startsWith('! ')){flush();out.push('<p class="rub">'+inl(t.slice(2))+'</p>');continue}
+    if(t.startsWith('- ')){
+      flush();const i=t.indexOf(' | '),v=i<0?t.slice(2):t.slice(2,i),r=i<0?lastR:t.slice(i+3);
+      if(i>=0)lastR=r;
+      out.push(r?`<p class="vr"><span>${inl(v)}</span><span class="r${i<0?' rep':''}">${inl(r)}</span></p>`:`<p class="li">${inl(v)}</p>`);continue}
+    if(quote.length)flush();lastR='';para.push(t);
+  }
+  flush();return out.join('');
+};
+const split=s=>{const [n,...r]=s.split('|');return{name:n.trim(),title:r.join('|').trim(),body:[],subs:[]}};
+const parse=src=>{
+  src=(src||'').replace(/\r/g,'').replace(/<!--[\s\S]*?-->/g,'');
+  const meta={},secs={};
+  const fm=src.match(/^---\n([\s\S]*?)\n---\n?/);
+  if(fm){fm[1].split('\n').forEach(l=>{const i=l.indexOf(':');if(i>0)meta[l.slice(0,i).trim()]=l.slice(i+1).trim()});src=src.slice(fm[0].length)}
+  let s=null,it=null,sub=null,m;
+  for(const line of src.split('\n')){
+    if(m=line.match(/^# (.*)/)){s=split(m[1]);s.items=[];secs[s.name.toLowerCase()]=s;it=sub=null}
+    else if(!s)continue;
+    else if(m=line.match(/^## (.*)/)){it=split(m[1]);s.items.push(it);sub=null}
+    else if(m=line.match(/^### (.*)/)){if(!it){it=split('');s.items.push(it)}sub=split(m[1]);it.subs.push(sub)}
+    else (sub||it||s).body.push(line);
+  }
+  return{meta,secs};
+};
+const items=sec=>sec?sec.body.map(l=>l.trim()).filter(l=>l.startsWith('- ')).map(l=>l.slice(2)):[];
+const K='dbc:v1';let S={};
+try{S=JSON.parse(localStorage.getItem(K))||{}}catch(e){S={}}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate()),DAY=864e5;
+const p2=n=>String(n).padStart(2,'0'),iso=`${today.getFullYear()}-${p2(today.getMonth()+1)}-${p2(today.getDate())}`;
+const WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const COL={green:'#2e6b3f',violet:'#5d3d82',purple:'#5d3d82',white:'#a8812a',gold:'#a8812a',red:'#a3211c',rose:'#c2577a',black:'#3d3d3d'};
+const add=(d,n)=>new Date(+d+n*DAY);
+const easter=y=>{const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),x=h+l-7*m+114;return new Date(y,Math.floor(x/31)-1,x%31+1)};
+const season=d=>{
+  const y=d.getFullYear(),E=easter(y),xm=new Date(y,11,25),adv=add(xm,-(xm.getDay()||7)-21),ep=new Date(y,0,6),bap=add(ep,7-ep.getDay());
+  if(d>=xm)return['Christmas','white'];
+  if(d>=adv)return['Advent','violet'];
+  if(d<=bap)return['Christmas','white'];
+  if(d>=add(E,-46)&&d<add(E,-3))return['Lent','violet'];
+  if(d>=add(E,-3)&&d<E)return['Paschal Triduum','red'];
+  if(d>=E&&d<=add(E,49))return['Easter','white'];
+  return['Ordinary Time','green'];
+};
+const fetchText=f=>fetch(f,{cache:'no-store'}).then(r=>r.ok?r.text():'').catch(()=>'');
+
+function boot(L,D){
+  const m=D.meta,fresh=!m.date||m.date===iso,[sn,sc]=season(today);
+  const colour=((fresh&&m.colour)||sc).toLowerCase();
+  document.documentElement.style.setProperty('--lit',COL[colour]||COL.green);
+  $('#season').textContent=(fresh&&m.season)||sn;
+  $('#colour').textContent=colour;
+  $('#day').textContent=(fresh&&m.day)||today.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+  $('#memo').textContent=fresh?(m.memorial||''):'';
+  if(!fresh){$('#stale').hidden=false;$('#stale').textContent=`The texts below are for ${m.date}. The season and colour above are worked out for today. Refresh day.md with the prompt at the bottom of the page.`}
+  if(m.psalter)$('#psalter').textContent='Psalter '+m.psalter;
+  const dkey=m.date||iso;
+
+  /* aspirations */
+  const asp=[...new Set([...items(D.secs.aspirations),...items(L.secs.aspirations)])];
+  const cnt=()=>{$('#count').textContent=S.prayed?`${S.prayed} prayed`:''};
+  const pray=()=>{S.prayed=(S.prayed||0)+1;save();cnt()};
+  const nextAsp=()=>{S.ai=((S.ai??-1)+1)%asp.length;save();$('#mtext').textContent=$('#asp').textContent=asp[S.ai]};
+  const closeM=()=>{$('#modal').hidden=true};
+  $('#amen').onclick=()=>{pray();closeM()};
+  $('#another').onclick=nextAsp;
+  $('#modal').onclick=e=>{if(e.target.id==='modal')closeM()};
+  $('#aspgo').onclick=()=>{pray();nextAsp()};
+  if(asp.length){nextAsp();$('#modal').hidden=false;$('#amen').focus()}
+  cnt();
+
+  /* homilies */
+  const hs=D.secs.homilies?.items||[],track=$('#track');
+  track.innerHTML=hs.map((h,i)=>`<article class="slide" aria-label="${i+1} of ${hs.length}"><p class="ref">${inl(h.name)}<span>${inl(h.title)}</span></p>${md(h.body)}${h.subs.map(s=>`<h3>${inl(s.name)}</h3><p class="src">${inl(s.title)}</p>${md(s.body)}`).join('')}</article>`).join('')||'<article class="slide"><p>No homilies in day.md yet.</p></article>';
+  let hi=S.h?.d===dkey?S.h.i:0,ht;
+  const showH=()=>{$('#hn').textContent=hs.length?`${hi+1} of ${hs.length}`:'';$('#hdots').innerHTML=hs.map((_,i)=>`<i class="${i===hi?'on':''}"></i>`).join('')};
+  const goH=(i,smooth=true)=>{hi=Math.max(0,Math.min(hs.length-1,i));track.scrollTo({left:hi*track.clientWidth,behavior:smooth?'smooth':'instant'});S.h={d:dkey,i:hi};save();showH()};
+  track.addEventListener('scroll',()=>{clearTimeout(ht);ht=setTimeout(()=>{const i=Math.round(track.scrollLeft/track.clientWidth);if(i!==hi){hi=i;S.h={d:dkey,i};save();showH()}},140)});
+  $('#hprev').onclick=()=>goH(hi-1);
+  $('#hnext').onclick=()=>goH(hi+1);
+  requestAnimationFrame(()=>goH(hi,false));
+
+  /* saints */
+  const qs=D.secs.saints?.items||[];
+  const showQ=i=>{if(!qs.length)return;S.q=(i+qs.length)%qs.length;save();const q=qs[S.q];$('#quote').innerHTML=md(q.body);$('#qwho').innerHTML=inl(q.name);$('#qsrc').innerHTML=inl(q.title);$('#qn').textContent=`${S.q+1} of ${qs.length}`};
+  $('#qprev').onclick=()=>showQ(S.q-1);
+  $('#qnext').onclick=()=>showQ(S.q+1);
+  showQ(S.q||0);
+
+  /* chaplets */
+  const prayers={};(L.secs.prayers?.items||[]).forEach(p=>prayers[p.name.toLowerCase()]=p.body);
+  const mysts=L.secs.mysteries?.items||[],wd=WD[today.getDay()];
+  const mset=mysts.find(x=>x.title.includes(wd))||mysts[0];
+  const expand=lines=>{
+    const st=[];
+    const one=(tok,dec)=>{const r=tok.trim().match(/^(.*?)\s*[×x]\s*(\d+)$/),name=r?r[1]:tok.trim(),n=r?+r[2]:1;
+      for(let i=1;i<=n;i++){
+        if(name==='Mystery'){const x=mset?.subs[dec-1];st.push({name:x?x.name:'Mystery',text:x?x.body:[],dec,big:1})}
+        else st.push({name,text:prayers[name.toLowerCase()]||[name],dec,i,n,big:!/^hail mary$|^for the sake/i.test(name)})}};
+    for(const line of lines)for(const tok of line.split(/;(?![^\[]*\])/)){
+      const g=tok.trim().match(/^(\d+)\s*[×x]\s*\[(.*)\]$/);
+      if(g){for(let d=1;d<=+g[1];d++)g[2].split(';').forEach(t=>one(t,d))}else if(tok.trim())one(tok,0)}
+    return st;
+  };
+  const chaps=(L.secs.chaplets?.items||[]).map(c=>({name:c.name,title:c.title,steps:expand(items({body:c.body}))}));
+  $('#csel').innerHTML=chaps.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('');
+  S.cs=S.cs||{};
+  let ci=Math.max(0,chaps.findIndex(c=>c.name===S.chap));
+  $('#csel').value=ci;
+  const renderC=()=>{
+    const c=chaps[ci];if(!c)return;const st=c.steps,i=Math.min(S.cs[c.name]||0,st.length),done=i>=st.length,s=st[i];
+    const isRos=st.some(x=>x.big&&x.dec&&x.text!==prayers[x.name.toLowerCase()]);
+    $('#cset').textContent=isRos&&mset?`${mset.name} Mysteries, for ${wd}`:c.title;
+    if(done){$('#cdec').textContent='Finished';$('#cname').textContent='Amen.';$('#ctext').innerHTML='<p>Thank you for this time with him. Start again whenever you like.</p>'}
+    else{
+      const dm=s.dec?st.find(x=>x.dec===s.dec&&x.big&&isRos):null;
+      $('#cdec').textContent=s.dec?`Decade ${s.dec} of 5${dm&&isRos?' · '+dm.name:''}`:(i<st.length/2?'Opening':'Closing');
+      $('#cname').textContent=s.name+(s.n>1?` · ${s.i} of ${s.n}`:'');
+      $('#ctext').innerHTML=md(s.text);
+    }
+    $('#beads').innerHTML=st.map((x,j)=>`<i class="${x.big?'l ':''}${j<i?'done':''}${j===i?'now':''}"></i>`).join('');
+    $('#cprog').textContent=`${Math.min(i+1,st.length)} of ${st.length} prayers`;
+  };
+  const stepC=d=>{const c=chaps[ci];if(!c)return;S.cs[c.name]=Math.max(0,Math.min(c.steps.length,(S.cs[c.name]||0)+d));save();renderC()};
+  $('#csel').onchange=e=>{ci=+e.target.value;S.chap=chaps[ci].name;save();renderC()};
+  $('#cnext').onclick=()=>stepC(1);
+  $('#cnext').onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();stepC(1)}};
+  $('#cback').onclick=()=>stepC(-1);
+  $('#crestart').onclick=()=>{S.cs[chaps[ci].name]=0;save();renderC()};
+  renderC();
+
+  /* hours */
+  const HRS=['Lauds','Terce','Sext','None','Vespers','Compline'],hmap={};
+  (D.secs.hours?.items||[]).forEach(h=>hmap[h.name.toLowerCase()]=h);
+  const hr=now.getHours(),has=h=>!!hmap[h.toLowerCase()];
+  let auto=hr<9?'Lauds':hr<11?'Terce':hr<14?'Sext':hr<16?'None':hr<20?'Vespers':'Compline';
+  if(!has(auto))auto=(['Terce','Sext','None'].includes(auto)?['Sext','Terce','None'].find(has):null)||(hr<12?HRS:[...HRS].reverse()).find(has)||auto;
+  let cur=S.hr?.d===dkey&&now-S.hr.t<3*36e5?S.hr.h:auto;
+  S.hst=S.hst||{};
+  const renderH=()=>{
+    $('#hchips').innerHTML=HRS.map(h=>`<button data-h="${h}" aria-pressed="${h===cur}" class="${hmap[h.toLowerCase()]?'':'none'}">${h}</button>`).join('');
+    const H=hmap[cur.toLowerCase()],k=dkey+cur,steps=H?.subs||[];
+    if(!steps.length){$('#hout').innerHTML='';$('#hstep').textContent=cur;$('#hname').textContent='Not in today\'s file';$('#htext').innerHTML=`<p>day.md has no ${esc(cur)} today. Ask for it in the daily refresh, or choose another hour.</p>`;$('#htap').hidden=true;return}
+    const i=Math.min(S.hst[k]||0,steps.length),done=i>=steps.length,s=steps[i];
+    $('#htap').hidden=done;
+    $('#hout').innerHTML=steps.map((x,j)=>`<button data-j="${j}" class="${j===i?'on':''}">${esc(x.name)}</button>`).join('');
+    if(done){$('#hstep').textContent=cur+' · complete';$('#hname').textContent='Thanks be to God.';$('#htext').innerHTML='<p>Tap a part above to pray it again.</p>';return}
+    $('#hstep').textContent=`${cur} · ${i+1} of ${steps.length}${s.title?' · '+s.title:''}`;
+    $('#hname').textContent=s.name;$('#htext').innerHTML=md(s.body);
+  };
+  const setHS=j=>{S.hst[dkey+cur]=j;save();renderH()};
+  $('#hchips').onclick=e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.h;S.hr={d:dkey,h:cur,t:+now};save();renderH()};
+  $('#hout').onclick=e=>{const b=e.target.closest('button');if(b)setHS(+b.dataset.j)};
+  const nextH=()=>{const n=hmap[cur.toLowerCase()]?.subs.length||0;if(n)setHS(Math.min(n,(S.hst[dkey+cur]||0)+1))};
+  $('#hcard').onclick=nextH;
+  $('#hcard').onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();nextH()}};
+  renderH();
+
+  /* litany */
+  const lit=D.secs.litany;
+  if(lit){$('#litname').textContent=lit.title||lit.name;$('#litbody').innerHTML=md(lit.body)}
+  const litBtn=()=>{$('#litdone').textContent=S.lit===dkey?'Prayed today ✓':'Mark as prayed'};
+  $('#litdone').onclick=()=>{S.lit=S.lit===dkey?'':dkey;save();litBtn()};
+  litBtn();
+
+  /* in a year */
+  S.y=S.y||{};
+  const ys=(L.secs['in a year']?.items||[]).map(y=>{const o={name:y.name,by:y.title};y.body.forEach(l=>{const r=l.match(/^(\w+):\s*(.+)$/);if(r)o[r[1]]=r[2].trim()});return o});
+  const yday=y=>{const n=+y.days||365,s=S.y[y.name];
+    if(s)return Math.max(1,Math.min(n,s.day+Math.round((today-new Date(s.set+'T00:00'))/DAY)));
+    const [mo,da]=(y.start||'01-01').split('-').map(Number);let st=new Date(today.getFullYear(),mo-1,da);if(st>today)st=new Date(today.getFullYear()-1,mo-1,da);
+    return Math.max(1,Math.min(n,Math.round((today-st)/DAY)+1))};
+  const renderY=()=>{$('#ygrid').innerHTML=ys.map((y,i)=>{const d=yday(y),n=+y.days||365,u=/^https:\/\//.test(y.url||'')?y.url.replace('{day}',d):'';
+    return`<div class="card"><p class="lab">${esc(y.by)}</p><h3>${esc(y.name)}</h3><p class="ynum">Day ${d}</p><div class="meter"><i style="width:${(d/n*100).toFixed(1)}%"></i></div>
+    ${u?`<p><a class="watch" href="${esc(u)}" target="_blank" rel="noopener">Watch day ${d} on YouTube →</a></p>`:''}
+    <div class="row"><button class="ico" data-y="${i}" data-d="-1" aria-label="Previous day">−</button><button class="ico" data-y="${i}" data-d="1" aria-label="Next day">+</button><span class="mute">of ${n}</span></div></div>`}).join('')};
+  $('#ygrid').onclick=e=>{const b=e.target.closest('button[data-y]');if(!b)return;const y=ys[+b.dataset.y];S.y[y.name]={day:Math.max(1,yday(y)+ +b.dataset.d),set:iso};save();renderY()};
+  renderY();
+
+  /* endless feed */
+  const pool=[...asp.map(v=>({t:'a',v})),...qs.map(q=>({t:'q',q})),...hs.map((h,i)=>({t:'h',h,i})),...(mset?.subs||[]).map((x,i)=>({t:'m',x,i}))];
+  let seed=today.getDate()*7919+1,prev=-1;
+  const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  const card=c=>c.t==='a'?`<div class="fc a"><p class="lab">Aspiration</p><p>${esc(c.v)}</p><button class="pri" data-act="pray">Pray it</button></div>`
+    :c.t==='q'?`<div class="fc"><p class="lab">${inl(c.q.name)}</p>${md(c.q.body)}<p class="mute">${inl(c.q.title)}</p></div>`
+    :c.t==='h'?`<div class="fc"><p class="lab">${inl(c.h.subs[0]?.name||'Commentary')}</p><h3>${inl(c.h.name)}</h3>${md((c.h.subs[0]?.body||[]).slice(0,1))}<button data-h="${c.i}">Read the whole homily</button></div>`
+    :`<div class="fc"><p class="lab">${esc(mset.name)} mystery ${c.i+1}</p><h3>${inl(c.x.name)}</h3>${md(c.x.body)}<button data-m="${c.i}">Pray this decade</button></div>`;
+  const more=()=>{if(!pool.length)return;let h='';for(let k=0;k<8;k++){let j;do j=Math.floor(rnd()*pool.length);while(j===prev&&pool.length>1);prev=j;h+=card(pool[j])}$('#feed').insertAdjacentHTML('beforeend',h)};
+  $('#feed').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.act==='pray'){pray();b.textContent='Amen';b.disabled=true}
+    else if(b.dataset.h){$('#homily').scrollIntoView();goH(+b.dataset.h)}
+    else if(b.dataset.m){const r=chaps.findIndex(c=>c.name==='Rosary');if(r<0)return;ci=r;$('#csel').value=r;S.chap='Rosary';S.cs.Rosary=chaps[r].steps.findIndex(x=>x.dec===+b.dataset.m+1);save();renderC();$('#chaplet').scrollIntoView()}};
+  const feedObs=new IntersectionObserver(es=>{if(es[0].isIntersecting)more()},{rootMargin:'800px'});
+  feedObs.observe($('#sent'));
+  more();
+
+  document.addEventListener('keydown',e=>{
+    if(!$('#modal').hidden){if(e.key==='Escape')closeM();return}
+    if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+    const inH=e.target===document.body||$('#homily').contains(e.target);
+    if(inH&&e.key==='ArrowLeft')goH(hi-1);
+    if(inH&&e.key==='ArrowRight')goH(hi+1);
+  });
+}
+
+const PROMPT=`Rewrite day.md for "Distracted by Christ" for {DATE}. Keep the exact format of the current file.
+
+- Front matter: date (YYYY-MM-DD), day (the liturgical day's name), memorial (or blank), season, colour (green | violet | white | red | rose | black), psalter week.
+- # Aspirations: 2 to 4 short aspirations that suit the day or feast.
+- # Homilies: 5 or 6 entries. First the day's Gospel, then the coming Sunday's, then passages that fit the season. Each entry: "## Reference | label", the passage as "> " lines, then "### Father | Work, section" and two short paragraphs of commentary from a Father or Doctor (the Office of Readings is a good source). Quote real text. Mark any paraphrase "(adapted)".
+- # Litany | Name: the full litany as "- invocation | response" lines (a line without "|" repeats the last response), then the closing prayer. Choose by feast; otherwise by weekday: Sunday Holy Name, Monday Holy Spirit, Tuesday the Holy Angels or the Precious Blood, Wednesday St Joseph, Thursday the Blessed Sacrament, Friday the Sacred Heart, Saturday Loreto. Put the reason on a "! " line.
+- # Saints: 6 to 8 quotations with exact sources ("## Saint | Work, section"), chosen around today's saint, feast or Gospel. Never invent a quotation.
+- # Hours: "## Lauds", "## Terce", "## Sext", "## None", "## Vespers", "## Compline", each split into "### Step | note" parts (opening, hymn, each psalm with its antiphon as a "! " line, reading, responsory, Gospel canticle, intercessions, Our Father, prayer, dismissal), following the psalter week. Use a public-domain or freely usable translation.
+Return only the file.`;
+$('#prompt').textContent=PROMPT.replace('{DATE}',iso);
+$('#copyp').onclick=()=>{const t=$('#prompt').textContent;(navigator.clipboard?.writeText(t)||Promise.reject()).then(()=>{$('#copied').textContent='Copied'},()=>{const r=document.createRange();r.selectNodeContents($('#prompt'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copied').textContent='Selected; press Ctrl+C'})};
+
+/* Served over http(s): the live day.md / library.md win, so a host can update them alone.
+   Opened from disk (file://): use the copies build.py inlined below. */
+const inlined=id=>document.getElementById(id)?.value||'';
+const load=f=>/^https?:$/.test(location.protocol)?fetchText(f):Promise.resolve('');
+Promise.all([load('library.md'),load('day.md')]).then(([l,d])=>{
+  l=l||inlined('md-library');d=d||inlined('md-day');
+  if(!l&&!d){$('#day').textContent='No texts found. Run python3 build.py to inline day.md and library.md.';return}
+  try{boot(parse(l),parse(d))}catch(err){$('#day').textContent='Something in day.md could not be read: '+err.message}
+});
+}
+</script>
+</body>
+</html>
